@@ -1,0 +1,16 @@
+{
+    "name": "Unity.MagicLeap.Samples.Rendering",
+    "references": [],
+    "includePlatforms": [
+        "Editor",
+        "Android"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

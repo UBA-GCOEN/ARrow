@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f3b71a771f04aef8057fae3964fd78, type: 3}
+  m_Name: TestReferenceObjectLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 5650310449331210382
+  m_GuidHigh: 2148562193999582371
+  m_ReferenceObjects:
+  - m_GuidLow: 5708894394579760611
+    m_GuidHigh: 8938110554762681228
+    m_Name: Test Cube
+    m_Entries:
+    - {fileID: 11400000, guid: ebde855a851c64c61b7fde816d240abf, type: 3}
+  - m_GuidLow: 4831297031182231965
+    m_GuidHigh: 15705711223131414445
+    m_Name: Test Cylinder
+    m_Entries:
+    - {fileID: 11400000, guid: c7c8217af215d4f83adb6e9edd5b8cf5, type: 3}

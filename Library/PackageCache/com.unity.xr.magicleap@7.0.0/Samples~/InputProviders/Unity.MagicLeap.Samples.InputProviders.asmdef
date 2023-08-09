@@ -1,0 +1,30 @@
+{
+    "name": "Unity.MagicLeap.Samples.InputProviders",
+    "references": [
+        "UnityEngine.SpatialTracking",
+        "UnityEngine.XR.MagicLeap"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "Android"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.xr.legacyinputhelpers",
+            "expression": "",
+            "define": "USE_LEGACY_INPUT_HELPERS"
+        },
+        {
+            "name": "com.unity.xr.legacyinputhelpers",
+            "expression": "2.0",
+            "define": "LIH_2_OR_NEWER"
+        }
+    ],
+    "noEngineReferences": false
+}

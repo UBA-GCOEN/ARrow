@@ -1,0 +1,10 @@
+apiRules:
+  - exclude:
+      uidRegex: .*Tests$
+      type: Namespace
+  - exclude:
+      uidRegex: Rendering
+      type: Namespace
+  - exclude:
+      uidRegex: Unity\.MagicLeap\.Samples\.Rendering
+      type: Namespace

@@ -1,0 +1,34 @@
+{
+  "name": "com.unity.xr.arcore",
+  "displayName": "Google ARCore XR Plugin",
+  "version": "5.0.6",
+  "unity": "2021.2",
+  "description": "Provides native Google ARCore integration for use with Unity's multi-platform XR API.\nSupports the following features:\n-Efficient Background Rendering\n-Horizontal Planes\n-Depth Data\n-Anchors\n-Hit Testing\n-Occlusion",
+  "keywords": [
+    "arcore",
+    "ar",
+    "augmented",
+    "xr",
+    "reality",
+    "core"
+  ],
+  "dependencies": {
+    "com.unity.xr.arfoundation": "5.0.6",
+    "com.unity.xr.core-utils": "2.1.0",
+    "com.unity.xr.management": "4.0.1",
+    "com.unity.modules.androidjni": "1.0.0",
+    "com.unity.modules.unitywebrequest": "1.0.0"
+  },
+  "_upm": {
+    "changelog": "### Fixed\n\n- Fixed issues [ARFB-251](https://issuetracker.unity3d.com/issues/autofocus-stops-working-on-android-when-arsession-dot-reset-is-triggered) and [ARFB-258](https://issuetracker.unity3d.com/issues/camera-feed-turns-off-when-arsession-dot-reset-is-called) where [ARSession.Reset](xref:UnityEngine.XR.ARFoundation.ARSession.Reset) could have unintended side effects such as disabling the device camera's autofocus."
+  },
+  "upmCi": {
+    "footprint": "c5a5f8033c87c878bda481a7ccaf75ddaecd9ed3"
+  },
+  "documentationUrl": "https://docs.unity3d.com/Packages/com.unity.xr.arcore@5.0/manual/index.html",
+  "repository": {
+    "url": "https://github.cds.internal.unity3d.com/unity/arfoundation.git",
+    "type": "git",
+    "revision": "e0c23bb6c351af6a055d43302e6f3bd55cb3a4be"
+  }
+}

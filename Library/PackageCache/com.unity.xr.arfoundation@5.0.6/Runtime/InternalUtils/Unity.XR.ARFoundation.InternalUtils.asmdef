@@ -1,0 +1,14 @@
+{
+    "name": "Unity.XR.ARFoundation.InternalUtils",
+    "rootNamespace": "UnityEngine.XR.ARFoundation.InternalUtils",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

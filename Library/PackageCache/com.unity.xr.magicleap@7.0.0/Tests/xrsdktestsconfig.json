@@ -1,0 +1,6 @@
+{
+    "name": "Magic Leap - xr.sdk.tests",
+    "unitySubsystemPath": "Packages/com.unity.xr.magicleap/Runtime/UnitySubsystemsManifest.json",
+    "enableDisplayTests": true,
+    "enableInputTests": true
+}

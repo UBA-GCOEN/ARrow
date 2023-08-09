@@ -1,0 +1,5 @@
+{
+	"displayName": "MagicLeap Rendering Samples",
+	"description": "Example code showing how to implement MagicLeap-specific rendering optimizations",
+	"createSeparatePackage": false
+}

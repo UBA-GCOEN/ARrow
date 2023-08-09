@@ -1,0 +1,19 @@
+{
+  "name": "Unity.XR.ARKit.Editor.Tests",
+    "references": [
+        "Unity.XR.ARKit",
+        "Unity.XR.ARKit.Editor",
+        "Unity.XR.ARSubsystems",
+        "Unity.XR.ARSubsystems.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "allowUnsafeCode": true
+}

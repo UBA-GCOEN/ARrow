@@ -1,0 +1,32 @@
+{
+    "name": "UnityEditor.XR.MagicLeap",
+    "references": [
+        "UnityEngine.XR.MagicLeap",
+        "Unity.XR.ARSubsystems",
+        "Unity.XR.ARSubsystems.Editor",
+        "Unity.XR.Management",
+        "Unity.XR.Management.Editor",
+        "Unity.XR.CoreUtils.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.xr.management",
+            "expression": "3.2.0",
+            "define": "XR_MANAGEMENT_3_2_0_OR_NEWER"
+        },
+        {
+            "name": "com.unity.xr.core-utils",
+            "expression": "2.1.0",
+            "define": "PROJECT_VALIDATION_AVAILABLE"
+        }
+    ]
+}

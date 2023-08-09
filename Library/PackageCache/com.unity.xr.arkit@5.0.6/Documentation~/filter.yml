@@ -1,0 +1,10 @@
+apiRules:
+  - exclude:
+      uidRegex: Tests$
+      type: Namespace
+  - exclude:
+      uidRegex: ^UnityEngine\.XR\.ARKit\.ARKitLoaderSettings$
+      type: Class
+  - exclude:
+      uidRegex: ^UnityEngine\.XR\.ARKit\.ARKitLoaderConstants$
+      type: Class
