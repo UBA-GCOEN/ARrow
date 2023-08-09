@@ -1,0 +1,33 @@
+name: "✨ Pull Request Form"
+description: "What Changes are you making?"
+title: "Feat:"
+labels: ["Feat", "Needs Triage"]
+body:
+  - type: checkboxes
+    attributes:
+      label: "Is there an existing PR raised for this?"
+      description: "Please search to see if an PR already exists for the changes you made."
+      options:
+        - label: "I have searched the existing PRs"
+          required: true
+
+  - type: textarea
+    attributes:
+      label: "Describe the feature"
+      description: "Describe the feature you are requesting."
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "Add Screenshots"
+      description: "Add sufficient screenshots to explain your issue."
+    validations:
+      required: true
+
+  - type: checkboxes
+    attributes:
+      label: "Record Options"
+      options:
+        - label: "I agree to follow this project's Code of Conduct"
+          required: true
