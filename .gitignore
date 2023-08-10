@@ -61,6 +61,10 @@ sysinfo.txt
 *.unitypackage
 *.app
 
+#server files
+node_modules/
+package-lock.json
+
 # Crashlytics generated file
 crashlytics-build.properties
 
