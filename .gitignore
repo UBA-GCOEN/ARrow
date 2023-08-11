@@ -63,7 +63,8 @@ sysinfo.txt
 
 #server files
 node_modules/
-package-lock.json
+*.env
+.env
 
 # Crashlytics generated file
 crashlytics-build.properties

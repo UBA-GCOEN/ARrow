@@ -7,6 +7,4 @@ import indexController from "../controllers/index.js";
 router.get("/", indexController)
 
 
-
-
 export default router;
