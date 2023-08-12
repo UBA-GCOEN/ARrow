@@ -61,6 +61,11 @@ sysinfo.txt
 *.unitypackage
 *.app
 
+#server files
+node_modules/
+*.env
+.env
+
 # Crashlytics generated file
 crashlytics-build.properties
 
