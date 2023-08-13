@@ -6,7 +6,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
-const  CONNECTION_URI = process.env.MONGODB_URI;
+const CONNECTION_URI = process.env.MONGODB_URI;
 
 const app = express()
 app.use(cors)
