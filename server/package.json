@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start":"ncc build index.js && node index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "build": "mkdir -p dist && cp index.js src/api dist/"
   },
   "author": "Siddhant Patil, Naresh Chandanbatve, Vishal Kesharwani, Harshal Lade and Saurabh Yadav",
   "license": "ISC",
