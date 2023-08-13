@@ -16,9 +16,10 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 import indexRoute from "./src/api/routes/index.js";
+import testController from "./src/api/controllers/test.js";
 
 app.get("/", indexRoute);
-
+app.get("/test", testController);
 
 mongoose
   .connect(CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true })
