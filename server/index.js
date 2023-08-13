@@ -5,7 +5,6 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import indexRoute from "./src/api/routes/index.js";
 
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URI = process.env.MONGODB_URI;
@@ -16,10 +15,10 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("test");
-});
-app.use(indexRoute);
+import indexRoute from "./src/api/routes/index.js";
+
+app.get("/", indexRoute);
+
 
 mongoose
   .connect(CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true })
