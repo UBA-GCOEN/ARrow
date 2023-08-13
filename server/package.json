@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start":"ncc build index.js && node index.js",
+    "start":"ncc build src/index.js && node src/index.js",
     "server": "nodemon src/index.js"
   },
   "author": "Siddhant Patil, Naresh Chandanbatve, Vishal Kesharwani, Harshal Lade and Saurabh Yadav",
