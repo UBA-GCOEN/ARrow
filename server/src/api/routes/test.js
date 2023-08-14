@@ -4,6 +4,6 @@ const router = express.Router();
 
 import testController from "../controllers/test.js";
 
-router.get("/test", testController)
+router.get("/", testController)
 
 export default router;
