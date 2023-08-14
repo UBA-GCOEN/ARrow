@@ -1,4 +1,4 @@
-import userAdminModel from "../models/userStudentModel.js"
+import userAdminModel from "../models/userAdminModel.js"
 
 
 /**
@@ -40,4 +40,24 @@ export const signup = async (req, res) => {
       }
      
 
+}
+
+
+/**
+ * Route: /userAdmin/signin
+ * Desc: user admin sign in
+ */
+export const signin = async (req, res) => {
+      const {email, password} = req.body  
+      
+      const oldUser = await userAdminModel.findOne({email})
+      
+      if(oldUser){
+        if(oldUser.password == password){
+            res.json({ msg: "user is logged in successfully" })
+        }
+        else{
+            res.json({ msg: "Incorrect password" })
+        }
+      }
 }
