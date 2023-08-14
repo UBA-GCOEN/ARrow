@@ -23,16 +23,10 @@ jobs:
           username: ${{ env.DOCKER_USERNAME }}
           password: ${{ env.DOCKER_PASSWORD }}
           
-      - name: Build and push Client Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: ./client/StichHub
-          push: true
-          tags: nareshchandanbatve/stichhub:client
 
       - name: Build and push Server Docker image
         uses: docker/build-push-action@v2
         with:
           context: ./server
           push: true
-          tags: nareshchandanbatve/stichhub:server
+          tags: nareshchandanbatve/arrow_server:1.0.0
