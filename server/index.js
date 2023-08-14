@@ -17,9 +17,11 @@ app.use(cors());
 
 import indexRoute from "./src/api/routes/index.js";
 import testRoute from "./src/api/routes/test.js";
+import userStudent from "./src/api/routes/userStudent.js";
 
-app.get("/", indexRoute);
-app.get("/test", testRoute);
+app.use("/", indexRoute);
+app.use("/test", testRoute);
+app.use("/userStudent", userStudent)
 
 mongoose
   .connect(CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true })
