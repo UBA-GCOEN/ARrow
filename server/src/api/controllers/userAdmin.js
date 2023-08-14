@@ -54,7 +54,7 @@ export const signin = async (req, res) => {
       
       if(oldUser){
         if(oldUser.password == password){
-            res.json({ msg: "user is logged in successfully" })
+            res.json({ msg: "Admin is logged in successfully" })
         }
         else{
             res.json({ msg: "Incorrect password" })

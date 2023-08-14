@@ -40,6 +40,25 @@ export const signup = async (req, res) => {
         console.log(err)
       }
      
-   
+}
 
+
+
+/**
+ * Route: /userStudent/signin
+ * Desc: user student sign in
+ */
+export const signin = async (req, res) => {
+  const {email, password} = req.body  
+  
+  const oldUser = await userStudentModel.findOne({email})
+  
+  if(oldUser){
+    if(oldUser.password == password){
+        res.json({ msg: "student is logged in successfully" })
+    }
+    else{
+        res.json({ msg: "Incorrect password" })
+    }
+  }
 }
