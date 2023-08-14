@@ -6,8 +6,6 @@ COPY package*.json ./
 
 RUN npm install
 
-RUN npm run build
-
 
 
 FROM node:18-slim
