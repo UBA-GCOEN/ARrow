@@ -21,8 +21,17 @@ jobs:
         
 
       - name: Assign issue
-        uses: probot/assign-issue@v1.0.0
+        uses: actions/github-script@v3
         with:
-          issue-number: ${{ inputs.issue_id }}
-          assignee: ${{ steps.get-issue-comment.outputs.username }}        
+          script: |
+            // Assign the issue to the username
+            github.issues.update({
+              issue_number: ${{ steps.get-issue-comment.outputs.issue }},
+              assignees: ${{ steps.get-issue-comment.outputs.username }},
+            });
+
+
+
+          
+          
           
