@@ -18,17 +18,14 @@ jobs:
             });
             const issue = context.issue.id
             const username = issueComment.body.match(/\/assign\s+(\S+)/)[1];
+            
+                        // Assign the issue to the username
+            github.issues.update({
+              issue_number: ${{ issue }},
+              assignees: ${{ username }},
+            });
         
 
-      - name: Assign issue
-        uses: actions/github-script@v3
-        with:
-          script: |
-            // Assign the issue to the username
-            github.issues.update({
-              issue_number: ${{ steps.get-issue-comment.outputs.issue }},
-              assignees: ${{ steps.get-issue-comment.outputs.username }},
-            });
 
 
 
