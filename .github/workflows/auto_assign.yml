@@ -12,6 +12,7 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
+            const github = await github.getClient();
             const issueComment = await github.issueComment.get({
               issue_id: context.issue.id,
               comment_id: context.payload.comment.id
