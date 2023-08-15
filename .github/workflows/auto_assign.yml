@@ -18,9 +18,11 @@ jobs:
             });
             const issue = context.issue.id
             const username = issueComment.body.match(/\/assign\s+(\S+)/)[1];
-          
+        
+
       - name: Assign issue
-        uses: voxmachina/assign-issue-action@v1
+        uses: probot/assign-issue@v1.0.0
         with:
-          issue-id: ${{ inputs.issue_id }}
-          assignee: ${{ steps.get-issue-comment.outputs.username }}
+          issue-number: ${{ inputs.issue_id }}
+          assignee: ${{ steps.get-issue-comment.outputs.username }}        
+          
