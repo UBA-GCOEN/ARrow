@@ -21,8 +21,8 @@ jobs:
             
                         // Assign the issue to the username
             github.issues.update({
-              issue_number: ${{ issue }},
-              assignees: ${{ username }},
+              issue_number: context.issue.id,
+              assignees: username,
             });
         
 
