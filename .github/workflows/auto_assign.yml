@@ -12,10 +12,7 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            const issueComment =  github.issueComment.get({
-              issue_id: context.issue.id,
-              comment_id: context.payload.comment.id
-            });
+            const issueComment =  github.event.comment.body
             const issue = context.issue.id
             const username = issueComment.body.match(/\/assign\s+(\S+)/)[1];
             
