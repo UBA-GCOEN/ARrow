@@ -1,0 +1,12 @@
+name: "Issue Greeter"
+on: [issues]
+
+jobs:
+  issue-greeter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Greeter"
+        uses: anishanne/greeter@V1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          message: "Hello @${{ github.actor }}! \nThank you for opening this new issue. We appreciate your interest in our project.\nwe kindly request that you please review our [Contributing Guidelines](https://github.com/UBA-GCOEN/StichHub/blob/main/CONTRIBUTING.md) and [Code of Conduct](https://github.com/UBA-GCOEN/StichHub/blob/main/CODE_OF_CONDUCT.md) thoroughly.\nMentors will review your issue. Meanwhile \nplease take a moment to check if a similar issue has already been opened."
