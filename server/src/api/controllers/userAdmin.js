@@ -1,5 +1,6 @@
 import userAdminModel from "../models/userAdminModel.js"
 import bcrypt from 'bcrypt'
+import generateToken from "../middlewares/generateToken.js"
 
 /**
  * Route: /userAdmin
@@ -33,11 +34,11 @@ export const signup = async (req, res) => {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$%#^&*])(?=.*[0-9]).{8,}$/;
 
       const emailDomains = [
-       "gmail.com",
-       "yahoo.com",
-       "hotmail.com",
-       "aol.com",
-       "outlook.com",
+       "@gmail.com",
+       "@yahoo.com",
+       "@hotmail.com",
+       "@aol.com",
+       "@outlook.com",
        ];
 
 
@@ -112,13 +113,24 @@ export const signin = async (req, res) => {
       const {email, password} = req.body  
       
       const oldUser = await userAdminModel.findOne({email})
+
+      const SECRET = process.env.ADMIN_SECRET
       
       if(oldUser){
         
         const isPasswordCorrect = bcrypt.compare(oldUser.password, password)
 
         if(isPasswordCorrect){
-            res.json({ msg: "Admin is logged in successfully" })
+          
+          const token = generateToken(oldUser, SECRET);
+
+          res.status(200).json({
+            success: true,
+            result: oldUser,
+            token,
+            msg: "Admin is logged in successfully"
+          });
+
         }
         else{
             res.json({ msg: "Incorrect password" })

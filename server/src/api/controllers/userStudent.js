@@ -1,5 +1,6 @@
 import userStudentModel from "../models/userStudentModel.js"
 import bcrypt from 'bcrypt'
+import generateToken from "../middlewares/generateToken.js"
 
 /**
  * Route: /userStudent
@@ -112,12 +113,23 @@ export const signin = async (req, res) => {
   
   const oldUser = await userStudentModel.findOne({email})
   
+  const SECRET = process.env.STUDENT_SECRET 
+  
   if(oldUser){
 
     const isPasswordCorrect = bcrypt.compare(oldUser.password, password)
 
     if(isPasswordCorrect){
-        res.json({ msg: "student is logged in successfully" })
+         
+      const token = generateToken(oldUser, SECRET);
+
+      res.status(200).json({
+        success: true,
+        result: oldUser,
+        token,
+        msg: "student is logged in successfully"
+      });
+
     }
     else{
         res.json({ msg: "Incorrect password" })
