@@ -113,7 +113,10 @@ export const signin = async (req, res) => {
   const oldUser = await userStudentModel.findOne({email})
   
   if(oldUser){
-    if(oldUser.password == password){
+
+    const isPasswordCorrect = bcrypt.compare(oldUser.password, password)
+
+    if(isPasswordCorrect){
         res.json({ msg: "student is logged in successfully" })
     }
     else{

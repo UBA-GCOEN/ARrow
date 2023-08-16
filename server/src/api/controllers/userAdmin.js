@@ -1,5 +1,5 @@
 import userAdminModel from "../models/userAdminModel.js"
-
+import bcrypt from 'bcrypt'
 
 /**
  * Route: /userAdmin
@@ -114,7 +114,10 @@ export const signin = async (req, res) => {
       const oldUser = await userAdminModel.findOne({email})
       
       if(oldUser){
-        if(oldUser.password == password){
+        
+        const isPasswordCorrect = bcrypt.compare(oldUser.password, password)
+
+        if(isPasswordCorrect){
             res.json({ msg: "Admin is logged in successfully" })
         }
         else{
