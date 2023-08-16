@@ -120,4 +120,7 @@ export const signin = async (req, res) => {
         res.json({ msg: "Incorrect password" })
     }
   }
+  else{
+    res.json({msg:"user does not exist."})
+  }
 }
