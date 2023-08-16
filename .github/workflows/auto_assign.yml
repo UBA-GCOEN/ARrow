@@ -13,7 +13,7 @@ jobs:
         with:
           script: |
 
-            echo ${{ github.event.comment.body }}
+            echo  github.event.comment.body 
             
             
                         // Assign the issue to the username
