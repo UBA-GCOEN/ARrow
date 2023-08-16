@@ -41,10 +41,6 @@ export const signup = async (req, res) => {
        ];
 
 
-       // check password match
-       if(password != confirmPassword){
-        res.json({msg:"Password does not match"})
-       }
 
        //check name length
        if (name.length < 2) {
@@ -56,14 +52,6 @@ export const signup = async (req, res) => {
        const oldUser = await userAdminModel.findOne({ email });
       try{
         if(!oldUser){
-
-          // check password format
-          if (!passwordRegex.test(password)) {
-            return res.status(404).json({
-              message:
-                "Password must be at least 8 characters long and include at least 1 uppercase letter, 1 lowercase letter, 1 symbol (@$%#^&*), and 1 number (0-9)",
-            });
-          }
  
 
           // check email format
@@ -71,7 +59,22 @@ export const signup = async (req, res) => {
             return res.status(404).json({
               message: "Please enter a valid email address",
             })};
+
+
+          // check password format
+          if (!passwordRegex.test(password)) {
+            return res.status(404).json({
+              message:
+                "Password must be at least 8 characters long and include at least 1 uppercase letter, 1 lowercase letter, 1 symbol (@$%#^&*), and 1 number (0-9)",
+            });
+          }            
  
+        
+          // check password match
+          if(password != confirmPassword){
+            res.json({msg:"Password does not match"})
+            }    
+
 
           // hash password with bcrypt
            const hashedPassword = await bcrypt.hash(password, 12)
@@ -80,7 +83,7 @@ export const signup = async (req, res) => {
             const result = userAdminModel.create({
                 name,
                 email,
-                hashedPassword,
+                password: hashedPassword,
              });
     
              if(result){
