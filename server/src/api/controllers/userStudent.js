@@ -121,6 +121,6 @@ export const signin = async (req, res) => {
     }
   }
   else{
-    res.json({msg:"user does not exist."})
+    res.json({msg:"User Student does not exist."})
   }
 }
