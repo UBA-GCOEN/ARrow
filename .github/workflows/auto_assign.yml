@@ -12,9 +12,10 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            const issueComment =  github.event.comment.body
+            // const issueComment =  github.event.comment.body
+            echo ${{ github.event.comment.body }}
             const issue = context.issue.id
-            const username = issueComment.body.match(/\/assign\s+(\S+)/)[1];
+            // const username = issueComment.body.match(/\/assign\s+(\S+)/)[1];
             
                         // Assign the issue to the username
             github.issues.update({
