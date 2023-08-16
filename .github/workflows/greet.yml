@@ -1,0 +1,12 @@
+name: "Issue Greeter"
+on: [issues]
+
+jobs:
+  issue-greeter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Greeter"
+        uses: anishanne/greeter@V1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          message: "![](https://cdn.anishdoes.dev/githublight.png)\nHey @{user}! Welcome to the ARrow repo\nPlease make sure to read the [Contribution Guidelines](https://github.com/UBA-GCOEN/ARrow/blob/main/CONTRIBUTING.md) and [Code of Conduct](https://github.com/UBA-GCOEN/ARrow/blob/main/CODE_OF_CONDUCT.md)"
