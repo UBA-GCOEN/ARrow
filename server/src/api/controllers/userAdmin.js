@@ -49,32 +49,33 @@ export const signup = async (req, res) => {
            .json({ message: "Name must be atleast 2 characters long." });
        }
 
-       const oldUser = await userAdminModel.findOne({ email });
-      try{
-        if(!oldUser){
- 
-
-          // check email format
-          if (!emailDomains.some((v) => email.indexOf(v) >= 0)) {
-            return res.status(404).json({
-              message: "Please enter a valid email address",
-            })};
 
 
-          // check password format
-          if (!passwordRegex.test(password)) {
-            return res.status(404).json({
-              message:
-                "Password must be at least 8 characters long and include at least 1 uppercase letter, 1 lowercase letter, 1 symbol (@$%#^&*), and 1 number (0-9)",
-            });
-          }            
+       // check email format
+       if (!emailDomains.some((v) => email.indexOf(v) >= 0)) {
+         return res.status(404).json({
+        message: "Please enter a valid email address",
+      })};
+
+
+      // check password format
+       if (!passwordRegex.test(password)) {
+         return res.status(404).json({
+        message: "Password must be at least 8 characters long and include at least 1 uppercase letter, 1 lowercase letter, 1 symbol (@$%#^&*), and 1 number (0-9)",
+        });
+      }            
  
         
-          // check password match
-          if(password != confirmPassword){
-            res.json({msg:"Password does not match"})
-            }    
+      // check password match
+       if(password != confirmPassword){
+         res.json({msg:"Password does not match"})
+         }    
+       
 
+       const oldUser = await userAdminModel.findOne({ email });
+       try{
+        if(!oldUser){
+ 
 
           // hash password with bcrypt
            const hashedPassword = await bcrypt.hash(password, 12)
