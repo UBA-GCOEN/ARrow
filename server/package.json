@@ -1,0 +1,28 @@
+{
+  "name": "arrow_server",
+  "version": "1.0.0",
+  "description": "ARrow APIs",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "ncc build index.js && node index.js",
+    "server": "nodemon index.js",
+    "build": "mkdir -p dist && cp index.js src/api dist/"
+  },
+  "author": "Siddhant Patil, Naresh Chandanbatve, Vishal Kesharwani, Harshal Lade and Saurabh Yadav",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.4.2",
+    "nodemailer": "^6.9.2",
+    "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.36.1"
+  }
+}
