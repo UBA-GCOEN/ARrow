@@ -124,6 +124,11 @@ export const signin = async (req, res) => {
           
           const token = generateToken(oldUser, SECRET);
 
+          req.session.user = {
+            token: token,
+            user: oldUser
+          }
+
           res.status(200).json({
             success: true,
             result: oldUser,
@@ -137,6 +142,6 @@ export const signin = async (req, res) => {
         }
       }
       else{
-        res.json({msg:"User Admin does not exist"})
+        res.json({ msg:"User Admin does not exist" })
       }
 }
