@@ -2,17 +2,16 @@ import mongoose from "mongoose";
 
 
 //estimated user schema
-const userStudentModel = mongoose.Schema({
+const userStaffModel = mongoose.Schema({
      id: { type: String },
      name: { type: String, required: true },
+     branch: { type: String, required: true },
      email: { type: String, required: true },
      password: { type: String, required: true },
-     year: { type: String, required: true },
-     branch: { type: String },
-     intrest: {type: String},
-     roll: { type: Number },
+     designation: { type: String, required: true },
+     bio: { type: String },
      mobile: { type: Number }
 
 })
 
-export default mongoose.model("userStudents",userStudentModel);
+export default mongoose.model("userStaffs",userStaffModel);
