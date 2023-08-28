@@ -2,6 +2,7 @@ import userStudentModel from "../models/userStudentModel.js"
 import bcrypt from 'bcrypt'
 import generateToken from "../middlewares/generateToken.js"
 
+
 /**
  * Route: /userStudent
  * Desc: to show or Access user Student
@@ -122,6 +123,11 @@ export const signin = async (req, res) => {
     if(isPasswordCorrect){
          
       const token = generateToken(oldUser, SECRET);
+
+      req.session.user = {
+        token: token,
+        user: oldUser
+      }
 
       res.status(200).json({
         success: true,
