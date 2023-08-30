@@ -20,10 +20,11 @@ import testRoute from "./src/api/routes/test.js";
 import userStudent from "./src/api/routes/userStudent.js";
 import userAdmin from "./src/api/routes/userAdmin.js";
 
-app.use("/", indexRoute);
-app.use("/test", testRoute);
+app.use("/", indexRoute)
+app.use("/test", testRoute)
 app.use("/userStudent", userStudent)
 app.use("/userAdmin", userAdmin)
+
 
 
 mongoose

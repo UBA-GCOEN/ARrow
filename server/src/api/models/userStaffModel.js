@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-//estimated user schema
+//estimated staff schema
 const userStaffModel = mongoose.Schema({
      id: { type: String },
      name: { type: String, required: true },
