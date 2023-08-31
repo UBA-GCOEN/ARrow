@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 
-//estimated user schema
-const userGuestModel = mongoose.Schema({
+//estimated visitor schema
+const userVisitorModel = mongoose.Schema({
      id: { type: String },
      name: { type: String, required: true },
      email: { type: String, required: true },
@@ -11,4 +11,4 @@ const userGuestModel = mongoose.Schema({
 
 })
 
-export default mongoose.model("userGuests", userGuestModel);
+export default mongoose.model("userVisitors", userVisitorModel);

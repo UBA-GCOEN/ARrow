@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-//estimated user schema
+//estimated student schema
 const userFacultyModel = mongoose.Schema({
      id: { type: String },
      name: { type: String, required: true },
