@@ -12,4 +12,18 @@
 
 
 ---
+### Meet Our 3D Interactive Mascot (GUIDO) 🤖
+Checkout [GUIDO](https://my.spline.design/arrowmascot-d7549a03c91f5f13297d0d6b531d40ca/) on Spline <br>
+
+<img src="https://github.com/vishal10kesharwani/ARrow/assets/66909545/0e56cbb5-ebb0-4653-9dfa-15897ff14511" width="250px" height="400">
+
+<img src="https://github.com/vishal10kesharwani/ARrow/assets/66909545/32c0c01d-e359-4488-a3d1-8b8a092b29ff" width="250px" height="400">
+
+<img src="https://github.com/vishal10kesharwani/ARrow/assets/66909545/841041de-fdea-4953-9556-5db9bbe005cc" width="250px" height="400">
+
+
+---
+
+
+
 ### This App is currently in Development Stage 👷🏗️🚧
