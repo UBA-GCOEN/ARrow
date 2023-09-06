@@ -19,11 +19,17 @@ import indexRoute from "./src/api/routes/index.js";
 import testRoute from "./src/api/routes/test.js";
 import userStudent from "./src/api/routes/userStudent.js";
 import userAdmin from "./src/api/routes/userAdmin.js";
+import userStaff from "./src/api/routes/userStaff.js";
+import userVisitor from "./src/api/routes/userVisitor.js";
+import userFaculty from "./src/api/routes/userFaculty.js";
 
 app.use("/", indexRoute)
 app.use("/test", testRoute)
 app.use("/userStudent", userStudent)
+app.use("/userStaff", userStaff)
 app.use("/userAdmin", userAdmin)
+app.use("/userVisitor", userVisitor)
+app.use("/userFaculty", userFaculty)
 
 
 
