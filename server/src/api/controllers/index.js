@@ -32,7 +32,24 @@ import jwt from 'jsonwebtoken'
      */
 
     // Incase we find a way remove below response as well
-    res.status(200).json({message:"Arrow Server is running..."})
+    // res.status(200).send("Status: Arrow Server is running...")
+
+    res.status(200).send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <style>
+          body {
+            background-color: black;
+            color: green;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Status: Arrow Server is running...</h1>
+      </body>
+    </html>
+  `);
 
 
 }
