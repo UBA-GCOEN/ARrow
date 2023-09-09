@@ -11,9 +11,10 @@ const userFacultyModel = mongoose.Schema({
      subjects: { type: String, required: true },
      designation: { type: String, required: true },
      education: { type: String, required: true },
+     role: { type: String, default: 'faculty'},
      bio: { type: String },
-     intrest: { type: String }
-
+     intrest: { type: String },
+     mobile: { type: String}
 })
 
 export default mongoose.model("userFaculties",userFacultyModel);

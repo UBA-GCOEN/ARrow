@@ -22,6 +22,7 @@ import userAdmin from "./src/api/routes/userAdmin.js";
 import userStaff from "./src/api/routes/userStaff.js";
 import userVisitor from "./src/api/routes/userVisitor.js";
 import userFaculty from "./src/api/routes/userFaculty.js";
+import profile from "./src/api/routes/profile.js";
 
 app.use("/", indexRoute)
 app.use("/test", testRoute)
@@ -30,6 +31,8 @@ app.use("/userStaff", userStaff)
 app.use("/userAdmin", userAdmin)
 app.use("/userVisitor", userVisitor)
 app.use("/userFaculty", userFaculty)
+app.use("/profile", profile)
+
 
 
 
