@@ -24,6 +24,9 @@ const authUser = (req, res, next) => {
           else if(req.session.user.user.role === 'visitor'){
             SECRET = process.env.VISITOR_SECRET
           }
+          else{
+            res.json({msg: "Not authorized - login first"})
+          }
   
           decodedData = jwt.verify(token, SECRET)  
           req.role = decodedData?.role    
