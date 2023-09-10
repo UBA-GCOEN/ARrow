@@ -8,6 +8,6 @@ import  { editProfile, profile } from '../controllers/profile.js';
 import authUser from '../middlewares/authUser.js'
 
 
-router.get("/", profile)
+router.get("/", profile) //to add get profile controller logic
 router.post("/edit", session, authUser, editProfile)
 export default router;
