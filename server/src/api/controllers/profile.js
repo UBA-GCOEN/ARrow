@@ -3,6 +3,7 @@ import userStudentModel from "../models/userStudentModel.js"
 import userStaffModel from "../models/userStaffModel.js"
 import userFacultyModel from "../models/userFacultyModel.js"
 import userVisitorModel from "../models/userVisitorModel.js"
+import e from "express"
 
 
 /**
@@ -76,9 +77,9 @@ export const editProfile = async (req, res) => {
            
            // update userAdmin in database 
              result = await userAdminModel.updateOne({
-                name,
-                email,
-                branch,
+                name:name,
+                email:email,
+                branch:branch,
              });
 
              
@@ -88,12 +89,12 @@ export const editProfile = async (req, res) => {
     else if(req.role === 'student'){
          // update userStudent in database 
             result = await userStudentModel.updateOne({
-            name,
-            email,
-            branch,
-            intrest,
-            enrollNo,
-            mobile
+            name:name,
+            email:email,
+            branch:branch,
+            intrest:intrest,
+            enrollNo:enrollNo,
+            mobile:mobile
          });
 
          
@@ -102,12 +103,12 @@ export const editProfile = async (req, res) => {
     else if(req.role === 'staff'){
         //update staff in database
             result = await userStaffModel.updateOne({
-            name,
-            email,
-            branch,
-            designation,
-            bio,
-            mobile
+            name:name,
+            email:email,
+            branch:branch,
+            designation:designation,
+            bio:bio,
+            mobile:mobile
          });
 
          newResult = await userStaffModel.findOne({email})
@@ -115,15 +116,15 @@ export const editProfile = async (req, res) => {
     else if(req.role === 'faculty'){
         //update faculty in database
         result = await userFacultyModel.updateOne({
-            name,
-            email,
-            branch,
-            subjects,
-            designation,
-            education,
-            bio,
-            intrest,
-            mobile
+            name:name,
+            email:email,
+            branch:branch,
+            subjects:subjects,
+            designation:designation,
+            education:education,
+            bio:bio,
+            intrest:intrest,
+            mobile:mobile
          });
 
          
@@ -132,9 +133,9 @@ export const editProfile = async (req, res) => {
     else if(req.role == 'visitor'){
         //update visitor in database
         result = await userVisitorModel.updateOne({
-            name,
-            email,
-            bio
+            name:name,
+            email:email,
+            bio:bio
          });
 
          newResult = await userVisitorModel.findOne({email})
