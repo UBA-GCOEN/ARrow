@@ -18,7 +18,17 @@ export const userStudent = async (req, res) => {
  * Desc: Student user sign up
  */
 export const signup = async (req, res) => {
-       const { name, enrollNo, email, password, confirmPassword} = req.body
+       const { 
+        name, 
+        email, 
+        password, 
+        confirmPassword, 
+        year,
+        branch,        //optional
+        intrest,       //optional
+        enrollNo,      //optional
+        mobile         //optional
+      } = req.body
        
 
               
@@ -83,9 +93,13 @@ export const signup = async (req, res) => {
            // create userstudent in database 
             const result = userStudentModel.create({
                 name,
-                enrollNo,
                 email,
                 password: hashedPassword,
+                year,
+                branch,      
+                intrest,       
+                enrollNo,      
+                mobile
              });
     
              if(result){

@@ -4,7 +4,22 @@ import userStaffModel from "../models/userStaffModel.js"
 import userFacultyModel from "../models/userFacultyModel.js"
 import userVisitorModel from "../models/userVisitorModel.js"
 
-const editProfile = async (req, res) => {
+
+/**
+ * Route: /profile
+ * Desc: get profile details 
+ */
+export const profile = async (req, res) => {
+
+    res.send("Display profile page")
+}
+
+
+/**
+ * Route: /profile/edit
+ * Desc: request to edit profile
+ */
+export const editProfile = async (req, res) => {
 
     const { name, email} = req.body
 
@@ -120,5 +135,3 @@ const editProfile = async (req, res) => {
      }
     
 }
-
-export default editProfile;

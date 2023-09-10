@@ -18,7 +18,13 @@ export const userVisitor = async (req, res) => {
  * Desc: Visitor user sign up
  */
 export const signup = async (req, res) => {
-       const { name, email, password, confirmPassword} = req.body
+       const { 
+        name, 
+        email, 
+        password, 
+        confirmPassword, 
+        bio
+      } = req.body
 
               
        //check if any field is not empty
@@ -86,6 +92,7 @@ export const signup = async (req, res) => {
                 name,
                 email,
                 password: hashedPassword,
+                bio
              });
     
              if(result){

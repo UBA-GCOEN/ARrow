@@ -18,7 +18,19 @@ export const userFaculty = async (req, res) => {
  * Desc: Faculty user sign up
  */
 export const signup = async (req, res) => {
-       const { name, email, password, confirmPassword} = req.body
+       const { 
+        name, 
+        email, 
+        password, 
+        confirmPassword, 
+        branch,
+        subjects,
+        designation,
+        education,
+        bio,           //optional
+        intrest,      //optional
+        mobile       //optional
+      } = req.body  
 
               
        //check if any field is not empty
@@ -80,12 +92,19 @@ export const signup = async (req, res) => {
 
           // hash password with bcrypt
            const hashedPassword = await bcrypt.hash(password, 12)
-           
+
            // create userFaculty in database 
             const result = userFacultyModel.create({
                 name,
                 email,
                 password: hashedPassword,
+                branch,
+                subjects,
+                designation,
+                education,
+                bio,
+                intrest,
+                mobile
              });
     
              if(result){
