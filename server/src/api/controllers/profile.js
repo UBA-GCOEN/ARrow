@@ -3,7 +3,6 @@ import userStudentModel from "../models/userStudentModel.js"
 import userStaffModel from "../models/userStaffModel.js"
 import userFacultyModel from "../models/userFacultyModel.js"
 import userVisitorModel from "../models/userVisitorModel.js"
-import e from "express"
 
 
 /**
@@ -83,7 +82,7 @@ export const editProfile = async (req, res) => {
              });
 
              
-         newResult = await userAdminModel.findOne({email})
+         newResult = await userAdminModel.findOne({email:email})
 
     }
     else if(req.role === 'student'){
@@ -98,7 +97,7 @@ export const editProfile = async (req, res) => {
          });
 
          
-         newResult = await userStudentModel.findOne({email})
+         newResult = await userStudentModel.findOne({email:email})
     }
     else if(req.role === 'staff'){
         //update staff in database
@@ -111,7 +110,7 @@ export const editProfile = async (req, res) => {
             mobile:mobile
          });
 
-         newResult = await userStaffModel.findOne({email})
+         newResult = await userStaffModel.findOne({email:email})
     }
     else if(req.role === 'faculty'){
         //update faculty in database
@@ -128,7 +127,7 @@ export const editProfile = async (req, res) => {
          });
 
          
-         newResult = await userFacultyModel.findOne({email})
+         newResult = await userFacultyModel.findOne({email:email})
     }
     else if(req.role == 'visitor'){
         //update visitor in database
@@ -138,7 +137,7 @@ export const editProfile = async (req, res) => {
             bio:bio
          });
 
-         newResult = await userVisitorModel.findOne({email})
+         newResult = await userVisitorModel.findOne({email:email})
     }
 
 
