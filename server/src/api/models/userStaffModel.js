@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import sanitizerPlugin from 'mongoose-sanitizer'
 
 
 //estimated staff schema
@@ -14,5 +15,9 @@ const userStaffModel = mongoose.Schema({
      mobile: { type: Number }
 
 })
+
+
+// sanitize schema
+userStaffModel.plugin(sanitizerPlugin);
 
 export default mongoose.model("userStaffs",userStaffModel);

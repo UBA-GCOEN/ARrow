@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import sanitizerPlugin from 'mongoose-sanitizer'
 
 //estimated student schema
 const userStudentModel = mongoose.Schema({
@@ -15,5 +15,8 @@ const userStudentModel = mongoose.Schema({
      mobile: { type: Number }
 
 })
+
+// sanitize schema
+userStudentModel.plugin(sanitizerPlugin);
 
 export default mongoose.model("userStudents",userStudentModel);

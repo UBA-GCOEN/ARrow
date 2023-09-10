@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import sanitizerPlugin from 'mongoose-sanitizer'
+
 
 //estimated admin schema
 const userAdminModel = new mongoose.Schema({
@@ -8,5 +10,10 @@ const userAdminModel = new mongoose.Schema({
   password: { type: String, required: true },
   role: { type: String, default: 'admin'},
 });
+
+// sanitize schema
+userAdminModel.plugin(sanitizerPlugin);
+
+
 
 export default mongoose.model("userAdmins", userAdminModel);
