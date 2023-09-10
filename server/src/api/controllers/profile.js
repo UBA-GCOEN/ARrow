@@ -52,10 +52,27 @@ export const editProfile = async (req, res) => {
        })};
 
 
+
+    /**
+     * getting remaing fields 
+     * from requests.
+     */
+     var {
+        branch,
+        subjects,
+        intrest,
+        enrollNo,
+        mobile,
+        designation,
+        bio,
+        education,
+        intrest,
+        mobile
+     } = req.body
+
+
      // conditions to figure out role
     if(req.role === 'admin'){
- 
-       var { branch } = req.body
            
            // update userAdmin in database 
              result = await userAdminModel.updateOne({
@@ -68,7 +85,7 @@ export const editProfile = async (req, res) => {
          newResult = await userAdminModel.findOne({email})
 
     }
-    else if(req.role == 'student'){
+    else if(req.role === 'student'){
          // update userStudent in database 
             result = await userStudentModel.updateOne({
             name,
@@ -82,20 +99,20 @@ export const editProfile = async (req, res) => {
          
          newResult = await userStudentModel.findOne({email})
     }
-    else if(req.role == 'staff'){
+    else if(req.role === 'staff'){
         //update staff in database
             result = await userStaffModel.updateOne({
             name,
             email,
             branch,
-            designation: req.designation,
-            bio: req.designation,
-            mobile: req.mobile
+            designation,
+            bio,
+            mobile
          });
 
          newResult = await userStaffModel.findOne({email})
     }
-    else if(req.role == 'faculty'){
+    else if(req.role === 'faculty'){
         //update faculty in database
         result = await userFacultyModel.updateOne({
             name,
@@ -117,7 +134,7 @@ export const editProfile = async (req, res) => {
         result = await userVisitorModel.updateOne({
             name,
             email,
-            bio: req.bio,
+            bio
          });
 
          newResult = await userVisitorModel.findOne({email})

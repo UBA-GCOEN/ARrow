@@ -10,5 +10,5 @@ import authAdmin from '../middlewares/authAdmin.js'
 
 
 router.get("/", profile)
-router.post("/edit", authAdmin, editProfile)
+router.post("/edit", session, authAdmin, editProfile)
 export default router;
