@@ -73,13 +73,15 @@ export const editProfile = async (req, res) => {
 
      // conditions to figure out role
     if(req.role === 'admin'){
+
+           var obj = {
+            name:name,
+            email:email,
+            branch:branch,
+           }
            
            // update userAdmin in database 
-             result = await userAdminModel.updateOne({
-                name:name,
-                email:email,
-                branch:branch,
-             });
+             result = await userAdminModel.updateOne(obj);
 
              
          newResult = await userAdminModel.findOne({email:email})
