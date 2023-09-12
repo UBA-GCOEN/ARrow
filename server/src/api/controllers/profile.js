@@ -74,49 +74,57 @@ export const editProfile = async (req, res) => {
      // conditions to figure out role
     if(req.role === 'admin'){
 
-           var obj = {
+           var adminObj = {
             name:name,
             email:email,
             branch:branch,
            }
            
            // update userAdmin in database 
-             result = await userAdminModel.updateOne(obj);
+             result = await userAdminModel.updateOne(adminObj);
 
              
-         newResult = await userAdminModel.findOne({email:email})
+         newResult = await userAdminModel.findOne(adminObj)
 
     }
     else if(req.role === 'student'){
-         // update userStudent in database 
-            result = await userStudentModel.updateOne({
+
+        var studentObj = {
             name:name,
             email:email,
             branch:branch,
             intrest:intrest,
             enrollNo:enrollNo,
             mobile:mobile
-         });
+         }
+
+
+         // update userStudent in database 
+            result = await userStudentModel.updateOne(studentObj);
 
          
-         newResult = await userStudentModel.findOne({email:email})
+         newResult = await userStudentModel.findOne(studentObj)
     }
     else if(req.role === 'staff'){
-        //update staff in database
-            result = await userStaffModel.updateOne({
+          
+        var staffObj = {
             name:name,
             email:email,
             branch:branch,
             designation:designation,
             bio:bio,
             mobile:mobile
-         });
+         }
 
-         newResult = await userStaffModel.findOne({email:email})
+
+        //update staff in database
+            result = await userStaffModel.updateOne(staffObj);
+
+         newResult = await userStaffModel.findOne(staffObj)
     }
     else if(req.role === 'faculty'){
-        //update faculty in database
-        result = await userFacultyModel.updateOne({
+
+        var facultyObj = {
             name:name,
             email:email,
             branch:branch,
@@ -126,20 +134,26 @@ export const editProfile = async (req, res) => {
             bio:bio,
             intrest:intrest,
             mobile:mobile
-         });
+         }
+
+        //update faculty in database
+        result = await userFacultyModel.updateOne(facultyObj);
 
          
-         newResult = await userFacultyModel.findOne({email:email})
+         newResult = await userFacultyModel.findOne(facultyObj)
     }
     else if(req.role == 'visitor'){
-        //update visitor in database
-        result = await userVisitorModel.updateOne({
+         
+        var visitorObj = {
             name:name,
             email:email,
             bio:bio
-         });
+         }
 
-         newResult = await userVisitorModel.findOne({email:email})
+        //update visitor in database
+        result = await userVisitorModel.updateOne(visitorObj);
+
+         newResult = await userVisitorModel.findOne(visitorObj)
     }
 
 
