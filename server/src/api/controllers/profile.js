@@ -48,7 +48,10 @@ export const editProfile = async (req, res) => {
             return;
           }
  
- 
+          if (typeof email !== "string") {
+            res.status(400).json({ status: "error" });
+            return;
+          }
  
         // check email format
         if (!emailDomains.some((v) => email.indexOf(v) >= 0)) {
