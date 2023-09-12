@@ -42,6 +42,11 @@ export const editProfile = async (req, res) => {
             .status(404)
             .json({ message: "Name must be atleast 2 characters long." });
         }
+
+        if (typeof name !== "string") {
+            res.status(400).json({ status: "error" });
+            return;
+          }
  
  
  
