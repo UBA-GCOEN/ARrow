@@ -42,16 +42,6 @@ export const editProfile = async (req, res) => {
             .status(404)
             .json({ message: "Name must be atleast 2 characters long." });
         }
-
-        if (typeof name !== "string") {
-            res.status(400).json({ status: "error" });
-            return;
-          }
- 
-          if (typeof email !== "string") {
-            res.status(400).json({ status: "error" });
-            return;
-          }
  
         // check email format
         if (!emailDomains.some((v) => email.indexOf(v) >= 0)) {
@@ -59,6 +49,66 @@ export const editProfile = async (req, res) => {
          message: "Please enter a valid email address",
        })};
 
+
+
+       /**
+        * checking field types
+        * to avoid sql attacks
+        */
+       if (typeof name !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof email !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+       
+      if (typeof branch !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof subjects !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof intrest !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof enrollNo !== "number") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof designation !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof bio !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof education !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof intrest !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof mobile !== "number") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
 
 
     /**
@@ -70,7 +120,6 @@ export const editProfile = async (req, res) => {
         subjects,
         intrest,
         enrollNo,
-        mobile,
         designation,
         bio,
         education,
@@ -82,86 +131,82 @@ export const editProfile = async (req, res) => {
      // conditions to figure out role
     if(req.role === 'admin'){
 
-           var adminObj = {
-            name:name,
-            email:email,
-            branch:branch,
-           }
            
            // update userAdmin in database 
-             result = await userAdminModel.updateOne(adminObj);
+             result = await userAdminModel.updateOne({
+                name,
+                email,
+                branch,
+               });
 
              
-         newResult = await userAdminModel.findOne(adminObj)
+         newResult = await userAdminModel.findOne({email})
 
     }
     else if(req.role === 'student'){
 
-        var studentObj = {
-            name:name,
-            email:email,
-            branch:branch,
-            intrest:intrest,
-            enrollNo:enrollNo,
-            mobile:mobile
-         }
+        
 
 
          // update userStudent in database 
-            result = await userStudentModel.updateOne(studentObj);
+            result = await userStudentModel.updateOne({
+                name,
+                email,
+                branch,
+                intrest,
+                enrollNo,
+                mobile
+             });
 
          
-         newResult = await userStudentModel.findOne(studentObj)
+         newResult = await userStudentModel.findOne({email})
     }
     else if(req.role === 'staff'){
           
-        var staffObj = {
-            name:name,
-            email:email,
-            branch:branch,
-            designation:designation,
-            bio:bio,
-            mobile:mobile
-         }
 
 
         //update staff in database
-            result = await userStaffModel.updateOne(staffObj);
+            result = await userStaffModel.updateOne({
+                name,
+                email,
+                branch,
+                designation,
+                bio,
+                mobile
+             });
 
-         newResult = await userStaffModel.findOne(staffObj)
+         newResult = await userStaffModel.findOne({email})
     }
     else if(req.role === 'faculty'){
 
-        var facultyObj = {
-            name:name,
-            email:email,
-            branch:branch,
-            subjects:subjects,
-            designation:designation,
-            education:education,
-            bio:bio,
-            intrest:intrest,
-            mobile:mobile
-         }
 
         //update faculty in database
-        result = await userFacultyModel.updateOne(facultyObj);
+        result = await userFacultyModel.updateOne({
+            name,
+            email,
+            branch,
+            subjects,
+            designation,
+            education,
+            bio,
+            intrest,
+            mobile
+         });
 
          
-         newResult = await userFacultyModel.findOne(facultyObj)
+         newResult = await userFacultyModel.findOne({email})
     }
     else if(req.role == 'visitor'){
          
-        var visitorObj = {
+
+        //update visitor in database
+        result = await userVisitorModel.updateOne({
             name:name,
             email:email,
             bio:bio
-         }
+         });
 
-        //update visitor in database
-        result = await userVisitorModel.updateOne(visitorObj);
-
-         newResult = await userVisitorModel.findOne(visitorObj)
+         newResult = await userVisitorModel.findOne({email})
     }
 
 
