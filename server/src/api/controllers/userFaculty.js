@@ -83,7 +83,71 @@ export const signup = async (req, res) => {
        if(password != confirmPassword){
          res.json({msg:"Password does not match"})
          }    
-       
+      
+         
+          // check password match
+          if(password != confirmPassword){
+            res.json({msg:"Password does not match"})
+           } 
+  
+  
+  
+         /**
+          * checking field types
+          * to avoid sql attacks
+          */
+         if (typeof name !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof email !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+         
+        if (typeof branch !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof intrest !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof subjects !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof password !== "string" || typeof confirmPassword !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof designation !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof mobile !== "number") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+
+        if (typeof bio !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+
+        if (typeof education !== "number") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+
+        
+        
 
        const oldUser = await userFacultyModel.findOne({ email });
        try{

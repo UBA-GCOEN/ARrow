@@ -94,11 +94,6 @@ export const editProfile = async (req, res) => {
         return;
       }
 
-      if (typeof intrest !== "string") {
-        res.status(400).json({ status: "error" });
-        return;
-      }
-
       if (typeof enrollNo !== "number") {
         res.status(400).json({ status: "error" });
         return;
@@ -202,9 +197,9 @@ export const editProfile = async (req, res) => {
 
         //update visitor in database
         result = await userVisitorModel.updateOne({
-            name:name,
-            email:email,
-            bio:bio
+            name,
+            email,
+            bio
          });
 
          newResult = await userVisitorModel.findOne({email})
