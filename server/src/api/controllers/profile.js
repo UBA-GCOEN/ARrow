@@ -145,8 +145,6 @@ export const editProfile = async (req, res) => {
     }
     else if(req.role === 'student'){
 
-        
-
 
          // update userStudent in database 
             result = await userStudentModel.updateOne({
