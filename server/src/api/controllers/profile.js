@@ -51,6 +51,25 @@ export const editProfile = async (req, res) => {
 
 
 
+
+     /**
+     * getting remaing fields 
+     * from requests.
+     */
+     var {
+        branch,
+        subjects,
+        intrest,
+        enrollNo,
+        designation,
+        bio,
+        education,
+        intrest,
+        mobile
+     } = req.body
+
+
+
        /**
         * checking field types
         * to avoid sql attacks
@@ -110,22 +129,6 @@ export const editProfile = async (req, res) => {
         return;
       }
 
-
-    /**
-     * getting remaing fields 
-     * from requests.
-     */
-     var {
-        branch,
-        subjects,
-        intrest,
-        enrollNo,
-        designation,
-        bio,
-        education,
-        intrest,
-        mobile
-     } = req.body
 
 
      // conditions to figure out role
