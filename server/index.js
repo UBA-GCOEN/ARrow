@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import rateLimit from 'express-rate-limit';
+import csrf from 'csurf';
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -25,7 +26,6 @@ import userVisitor from "./src/api/routes/userVisitor.js";
 import userFaculty from "./src/api/routes/userFaculty.js";
 import profile from "./src/api/routes/profile.js";
 
-
 //rate limiter
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -41,7 +41,7 @@ app.use("/userVisitor", limiter, userVisitor)
 app.use("/userFaculty", limiter, userFaculty)
 app.use("/profile", limiter, profile)
 
-
+app.use(csrf)
 
 
 mongoose

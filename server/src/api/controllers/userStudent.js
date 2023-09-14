@@ -196,6 +196,7 @@ export const signin = async (req, res) => {
         success: true,
         result: oldUser,
         token,
+        csrfToken: req.csrfToken,
         msg: "student is logged in successfully"
       });
 
