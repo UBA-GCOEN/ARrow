@@ -7,6 +7,7 @@ export  const csrfProtect = (req, res, next) => {
 
     if(req.session.csrfToken){
 
+        csrfProtection(req, res, (err) => {
 
         /**
          * for development only 
@@ -16,16 +17,15 @@ export  const csrfProtect = (req, res, next) => {
          * 
          * remove below line in production.  
          */
-        req.csrfToken = req.session.csrfToken
+          req.csrfToken = req.session.csrfToken
 
-
-        csrfProtection(req, res, (err) => {
+          
             if (err) {
               return res.status(403).json({ err });
             }
-            
+            next();
           });
-          next();
+          
     }
     else{
 
