@@ -74,52 +74,52 @@ export const editProfile = async (req, res) => {
         * checking field types
         * to avoid sql attacks
         */
-       if (typeof name !== "string" && name !== undefined) {
+       if (typeof name !== "string") {
         res.status(400).json({ status: "error"+name+ typeof name });
         return;
       }
 
-      if (typeof email !== "string" && email !== undefined) {
+      if (typeof email !== "string") {
         res.status(400).json({ status: "error"+email+typeof email });
         return;
       }
        
-      if (typeof branch !== "string" && branch !== undefined) {
+      if (typeof branch !== "string") {
         res.status(400).json({ status: "error"+branch+typeof branch });
         return;
       }
 
-      if (typeof subjects !== "string" && subjects !== undefined) {
+      if (typeof subjects !== "string") {
         res.status(400).json({ status: "error"+subjects+typeof subjects });
         return;
       }
 
-      if (typeof enrollNo !== "number" && enrollNo !== undefined) {
+      if (typeof enrollNo !== "number") {
         res.status(400).json({ status: "error"+enrollNo+typeof enrollNo });
         return;
       }
 
-      if (typeof designation !== "string" && designation !== undefined) {
+      if (typeof designation !== "string") {
         res.status(400).json({ status: "error"+designation+typeof designation });
         return;
       }
 
-      if (typeof bio !== "string" && bio !== undefined) {
+      if (typeof bio !== "string") {
         res.status(400).json({ status: "error"+bio+typeof bio });
         return;
       }
 
-      if (typeof education !== "string" && education !== undefined) {
+      if (typeof education !== "string") {
         res.status(400).json({ status: "error"+education+typeof education });
         return;
       }
 
-      if (typeof intrest !== "string" && intrest !== undefined) {
+      if (typeof intrest !== "string") {
         res.status(400).json({ status: "error"+intrest+typeof intrest});
         return;
       }
 
-      if (typeof mobile !== "number" && mobile !== undefined) {
+      if (typeof mobile !== "number") {
         res.status(400).json({ status: "error"+mobile+typeof mobile });
         return;
       }
