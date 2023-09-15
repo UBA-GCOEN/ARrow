@@ -96,27 +96,27 @@ export const signup = async (req, res) => {
           * checking field types
           * to avoid sql attacks
           */
-         if (typeof name !== "string") {
+         if (typeof name !== "string" && name !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
   
-        if (typeof email !== "string") {
+        if (typeof email !== "string" && email !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
          
-        if (typeof branch !== "string") {
+        if (typeof branch !== "string" && branch !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
   
-        if (typeof intrest !== "string") {
+        if (typeof intrest !== "string" && intrest !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
   
-        if (typeof subjects !== "string") {
+        if (typeof subjects !== "string" && subjects !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
@@ -126,22 +126,22 @@ export const signup = async (req, res) => {
           return;
         }
   
-        if (typeof designation !== "string") {
+        if (typeof designation !== "string" && designation !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
   
-        if (typeof mobile !== "number") {
+        if (typeof mobile !== "number" && mobile !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
 
-        if (typeof bio !== "string") {
+        if (typeof bio !== "string" && bio !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
 
-        if (typeof education !== "number") {
+        if (typeof education !== "number" && education !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }

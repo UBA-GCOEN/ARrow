@@ -84,12 +84,12 @@ export const signup = async (req, res) => {
           * checking field types
           * to avoid sql attacks
           */
-         if (typeof name !== "string") {
+         if (typeof name !== "string" && name !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
   
-        if (typeof email !== "string") {
+        if (typeof email !== "string" && email !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
@@ -99,7 +99,7 @@ export const signup = async (req, res) => {
           return;
         }    
         
-        if (typeof bio !== "string") {
+        if (typeof bio !== "string" && bio !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
