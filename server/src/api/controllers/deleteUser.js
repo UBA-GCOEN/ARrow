@@ -6,7 +6,12 @@ import userVisitorModel from "../models/userVisitorModel.js"
 import bcrypt from 'bcrypt'
 
 
-
+/**
+ * Route: /getDeletePage
+ * Desc: get the details of 
+ *       current user before 
+ *       deleting the user
+ */
 export const getDeletePage = async (req, res) => {
     var email = req.session.user.user.email
     var role = req.role
@@ -20,12 +25,19 @@ export const getDeletePage = async (req, res) => {
 }
 
 
+
+
+
+/**
+ * Route: /deleteUser
+ * Desc: Delete the current 
+ *       logged in user
+ */
 export const deleteUser = async (req, res) => {
  
     var { email, name, password } = req.body
 
     var role = req.role
-
 
     const emailDomains = [
         "@gmail.com",
@@ -49,8 +61,6 @@ export const deleteUser = async (req, res) => {
           return res.status(404).json({
          message: "Please enter a valid email address",
        })};
-
-
 
 
 
