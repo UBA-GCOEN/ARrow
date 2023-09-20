@@ -6,10 +6,15 @@ import authUser from '../middlewares/authUser.js';
 import { deleteUser, getDeletePage } from '../controllers/deleteUser.js';
 import { logout } from '../middlewares/logout.js';
 import { csrfProtect } from '../middlewares/csrfProtection.js';
+import { sendResetEmail, verifyEmail, updatePassword } from '../controllers/forgotPassword.js';
+
 
 router.get("/", session, csrfProtect, indexController)
 router.get("/logout", session, csrfProtect, logout, indexController)
-router.post("/deleteUser", session, authUser, deleteUser)
-router.get("/getDeletePage", session, authUser, getDeletePage)
+router.post("/deleteUser", session, csrfProtect, authUser, deleteUser)
+router.get("/getDeletePage", session, csrfProtect, authUser, getDeletePage)
+router.post("/sendEmail", session, csrfProtect, authUser, sendResetEmail)
+router.get("/verifyEmail", verifyEmail)
+router.post("/updatePassword", session, csrfProtect, authUser, updatePassword)
 
 export default router;
