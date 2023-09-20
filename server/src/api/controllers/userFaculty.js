@@ -195,6 +195,12 @@ export const signup = async (req, res) => {
  */
 export const signin = async (req, res) => {
       const {email, password} = req.body  
+
+      //sql injection validation
+      if(typeof email !== 'string'){
+        console.log("invalid email")
+        return 
+      }
       
       try {
         
