@@ -1,6 +1,8 @@
 import userStaffModel from "../models/userStaffModel.js"
 import bcrypt from 'bcrypt'
 import generateToken from "../middlewares/generateToken.js"
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * Route: /userStaff
