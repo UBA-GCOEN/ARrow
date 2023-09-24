@@ -1,7 +1,11 @@
 import userFacultyModel from "../models/userFacultyModel.js"
 import bcrypt from 'bcrypt'
 import generateToken from "../middlewares/generateToken.js"
+
 import session from "express-session"
+import * as dotenv from "dotenv";
+dotenv.config();
+
 
 /**
  * Route: /userFaculty
