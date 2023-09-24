@@ -18,7 +18,13 @@ export const userVisitor = async (req, res) => {
  * Desc: Visitor user sign up
  */
 export const signup = async (req, res) => {
-       const { name, email, password, confirmPassword} = req.body
+       const { 
+        name, 
+        email, 
+        password, 
+        confirmPassword, 
+        bio
+      } = req.body
 
               
        //check if any field is not empty
@@ -73,6 +79,32 @@ export const signup = async (req, res) => {
          }    
        
 
+
+         /**
+          * checking field types
+          * to avoid sql attacks
+          */
+         if (typeof name !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof email !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof password !== "string" || typeof confirmPassword !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }    
+        
+        if (typeof bio !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+        
+
        const oldUser = await userVisitorModel.findOne({ email });
        try{
         if(!oldUser){
@@ -86,6 +118,7 @@ export const signup = async (req, res) => {
                 name,
                 email,
                 password: hashedPassword,
+                bio
              });
     
              if(result){
@@ -133,6 +166,7 @@ export const signin = async (req, res) => {
             success: true,
             result: oldUser,
             token,
+            csrfToken: req.csrfToken,
             msg: "Visitor is logged in successfully"
           });
 

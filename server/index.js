@@ -2,6 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
+import rateLimit from 'express-rate-limit';
+import csrf from 'csurf';
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -22,15 +24,24 @@ import userAdmin from "./src/api/routes/userAdmin.js";
 import userStaff from "./src/api/routes/userStaff.js";
 import userVisitor from "./src/api/routes/userVisitor.js";
 import userFaculty from "./src/api/routes/userFaculty.js";
+import profile from "./src/api/routes/profile.js";
+
+//rate limiter
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
 
 app.use("/", indexRoute)
-app.use("/test", testRoute)
-app.use("/userStudent", userStudent)
-app.use("/userStaff", userStaff)
-app.use("/userAdmin", userAdmin)
-app.use("/userVisitor", userVisitor)
-app.use("/userFaculty", userFaculty)
+app.use("/test", limiter, testRoute)
+app.use("/userStudent", limiter, userStudent)
+app.use("/userStaff", limiter, userStaff)
+app.use("/userAdmin", limiter, userAdmin)
+app.use("/userVisitor", limiter, userVisitor)
+app.use("/userFaculty", limiter, userFaculty)
+app.use("/profile", limiter, profile)
 
+app.use(csrf)
 
 
 mongoose

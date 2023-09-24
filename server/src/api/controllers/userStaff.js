@@ -18,7 +18,16 @@ export const userStaff = async (req, res) => {
  * Desc: Staff user sign up
  */
 export const signup = async (req, res) => {
-       const { name, email, password, confirmPassword} = req.body
+       const { 
+        name, 
+        email, 
+        password, 
+        confirmPassword, 
+        designation,
+        role,
+        bio,
+        mobile
+      } = req.body
 
               
        //check if any field is not empty
@@ -71,6 +80,45 @@ export const signup = async (req, res) => {
        if(password != confirmPassword){
          res.json({msg:"Password does not match"})
          }    
+
+
+
+
+       /**
+        * checking field types
+        * to avoid sql attacks
+        */
+       if (typeof name !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof email !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof designation !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof bio !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof role !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof mobile !== "number") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+
        
 
        const oldUser = await userStaffModel.findOne({ email });
@@ -86,6 +134,10 @@ export const signup = async (req, res) => {
                 name,
                 email,
                 password: hashedPassword,
+                designation,
+                role,
+                bio,
+                mobile
              });
     
              if(result){
@@ -133,6 +185,7 @@ export const signin = async (req, res) => {
             success: true,
             result: oldUser,
             token,
+            csrfToken: req.csrfToken,
             msg: "Staff is logged in successfully"
           });
 

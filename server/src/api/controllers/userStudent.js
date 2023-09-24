@@ -18,7 +18,17 @@ export const userStudent = async (req, res) => {
  * Desc: Student user sign up
  */
 export const signup = async (req, res) => {
-       const { name, enrollNo, email, password, confirmPassword} = req.body
+       const { 
+        name, 
+        email, 
+        password, 
+        confirmPassword, 
+        year,
+        branch,        //optional
+        intrest,       //optional
+        enrollNo,      //optional
+        mobile         //optional
+      } = req.body
        
 
               
@@ -71,6 +81,55 @@ export const signup = async (req, res) => {
           res.json({msg:"Password does not match"})
          } 
 
+
+
+       /**
+        * checking field types
+        * to avoid sql attacks
+        */
+       if (typeof name !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof email !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+       
+      if (typeof branch !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof intrest !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof enrollNo !== "number") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof password !== "string" || typeof confirmPassword !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof year !== "string") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+      if (typeof mobile !== "number") {
+        res.status(400).json({ status: "error" });
+        return;
+      }
+
+
+
+
        const oldUser = await userStudentModel.findOne({ email });
       try{
         if(!oldUser){   
@@ -83,9 +142,13 @@ export const signup = async (req, res) => {
            // create userstudent in database 
             const result = userStudentModel.create({
                 name,
-                enrollNo,
                 email,
                 password: hashedPassword,
+                year,
+                branch,      
+                intrest,       
+                enrollNo,      
+                mobile
              });
     
              if(result){
@@ -133,6 +196,7 @@ export const signin = async (req, res) => {
         success: true,
         result: oldUser,
         token,
+        csrfToken: req.csrfToken,
         msg: "student is logged in successfully"
       });
 

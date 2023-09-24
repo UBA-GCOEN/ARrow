@@ -20,7 +20,19 @@ export const userFaculty = async (req, res) => {
  * Desc: Faculty user sign up
  */
 export const signup = async (req, res) => {
-       const { name, email, password, confirmPassword} = req.body
+       const { 
+        name, 
+        email, 
+        password, 
+        confirmPassword, 
+        branch,
+        subjects,
+        designation,
+        education,
+        bio,           //optional
+        intrest,      //optional
+        mobile       //optional
+      } = req.body  
 
               
        //check if any field is not empty
@@ -73,7 +85,71 @@ export const signup = async (req, res) => {
        if(password != confirmPassword){
          res.json({msg:"Password does not match"})
          }    
-       
+      
+         
+          // check password match
+          if(password != confirmPassword){
+            res.json({msg:"Password does not match"})
+           } 
+  
+  
+  
+         /**
+          * checking field types
+          * to avoid sql attacks
+          */
+         if (typeof name !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof email !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+         
+        if (typeof branch !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof intrest !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof subjects !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof password !== "string" || typeof confirmPassword !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof designation !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof mobile !== "number") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+
+        if (typeof bio !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+
+        if (typeof education !== "number") {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+
+        
+        
 
        const oldUser = await userFacultyModel.findOne({ email });
        try{
@@ -82,12 +158,19 @@ export const signup = async (req, res) => {
 
           // hash password with bcrypt
            const hashedPassword = await bcrypt.hash(password, 12)
-           
+
            // create userFaculty in database 
             const result = userFacultyModel.create({
                 name,
                 email,
                 password: hashedPassword,
+                branch,
+                subjects,
+                designation,
+                education,
+                bio,
+                intrest,
+                mobile
              });
     
              if(result){
@@ -135,6 +218,7 @@ export const signin = async (req, res) => {
             success: true,
             result: oldUser,
             token,
+            csrfToken: req.csrfToken,
             msg: "Faculty is logged in successfully"
           });
 

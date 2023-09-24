@@ -71,6 +71,27 @@ export const signup = async (req, res) => {
        if(password != confirmPassword){
          res.json({msg:"Password does not match"})
          }    
+
+       
+         
+         /**
+          * checking field types
+          * to avoid sql attacks
+          */
+         if (typeof name !== "string" && name !== undefined) {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof email !== "string" && email !== undefined) {
+          res.status(400).json({ status: "error" });
+          return;
+        }
+  
+        if (typeof password !== "string" || typeof confirmPassword !== "string") {
+          res.status(400).json({ status: "error" });
+          return;
+        }         
        
 
        const oldUser = await userAdminModel.findOne({ email });
@@ -133,6 +154,7 @@ export const signin = async (req, res) => {
             success: true,
             result: oldUser,
             token,
+            csrfToken: req.csrfToken,
             msg: "Admin is logged in successfully"
           });
 
