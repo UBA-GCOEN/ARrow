@@ -12,7 +12,10 @@ dotenv.config();
 
 
 
-
+/**
+ * Route: /sendEmail
+ * Desc: send email with verification token
+ */
 export const sendResetEmail = async ( req, res) => {
 
       const email = req.body.email;
@@ -107,6 +110,11 @@ export const sendResetEmail = async ( req, res) => {
     }
 } 
 
+
+/**
+ * Route: /verifyEmail
+ * Desc: verify email with token
+ */
 export const verifyEmail = async ( req, res) => {
 
     const token = req.query.token
@@ -144,6 +152,10 @@ export const verifyEmail = async ( req, res) => {
 }
 
 
+/**
+ * Route: /updatePassword
+ * Desc: change the password in DB
+ */
 export const updatePassword = async (req, res) => {
 
 
@@ -167,6 +179,7 @@ export const updatePassword = async (req, res) => {
      // check password match
       if(password != confirmPassword){
         res.json({msg:"Password does not match"})
+        return
         }  
     
     try{  
