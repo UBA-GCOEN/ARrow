@@ -128,6 +128,11 @@ export const updateEvent = async (req, res) => {
     /**
      * adding validation to prevent sql injection
      */
+        if(typeof _id !== "string" ){
+            res.status(400).json({ status: "invalid _id" });
+            return;
+        } 
+
         if(typeof title !== "string" ){
             res.status(400).json({ status: "invalid title" });
             return;
