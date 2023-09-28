@@ -1,4 +1,3 @@
-import express from 'express'
 import eventModel from '../models/eventModel.js'
 
 
@@ -18,6 +17,47 @@ export const createEvent = async (req, res) => {
         guest,  
     } = req.body
 
+
+
+    /**
+     * adding validation to prevent sql injection
+     */
+    if(typeof title !== 'string' &&  title !== undefined){
+        res.send("inalid title")
+        return 
+    }
+
+    if(typeof description !== 'string' &&  description !== undefined){
+        res.send("invalid description")
+        return
+    }
+
+    if(typeof eventCoordinator !== 'string' &&  eventCoordinator !== undefined){
+        res.send("invalid eventCoordinatot")
+        return
+    }
+
+    if(typeof time !== 'string' &&  time !==  undefined){
+        res.send("invalid time")
+        return
+    }
+
+    if(typeof venue !== 'string' &&  venue !== undefined){
+        res.send("invalid venue")
+        return
+    }
+
+    if(typeof guest !== 'string' &&  guest !== undefined){
+        res.send("invalid guest")
+        return
+    }
+
+
+
+
+    
+    // Event creation in database
+     
     if(role == 'admin' || role == 'faculty'){
 
        let organizerRole = role
@@ -62,6 +102,10 @@ export const createEvent = async (req, res) => {
 
 
 
+
+
+
+
 /**
  * Route: /event/updateEvent
  * Desc: update the event information or status
@@ -79,6 +123,44 @@ export const updateEvent = async (req, res) => {
         guest,  
     } = req.body
 
+
+
+    /**
+     * adding validation to prevent sql injection
+     */
+        if(typeof title !== 'string' &&  title !== undefined){
+            res.send("inalid title")
+            return 
+        }
+    
+        if(typeof description !== 'string' &&  description !== undefined){
+            res.send("invalid description")
+            return
+        }
+    
+        if(typeof eventCoordinator !== 'string' &&  eventCoordinator !== undefined){
+            res.send("invalid eventCoordinatot")
+            return
+        }
+    
+        if(typeof time !== 'string' &&  time !==  undefined){
+            res.send("invalid time")
+            return
+        }
+    
+        if(typeof venue !== 'string' &&  venue !== undefined){
+            res.send("invalid venue")
+            return
+        }
+    
+        if(typeof guest !== 'string' &&  guest !== undefined){
+            res.send("invalid guest")
+            return
+        }
+
+
+
+    // Event updation in database
     if(role == 'admin' || role == 'faculty'){
 
         let organizerRole = role
@@ -123,6 +205,10 @@ export const updateEvent = async (req, res) => {
 
 
 
+
+
+
+
 /**
  * Route: /event/deleteEvent
  * Desc: delete the event
@@ -133,6 +219,14 @@ export const deleteEvent = async (req, res) =>{
     const { 
         _id 
     } = req.body
+
+
+    //sql attack prevention
+    if(typeof _id !== 'string' &&  _id !== undefined){
+        res.send("inalid title")
+        return 
+    }
+
 
     if(role == 'admin' || role == 'faculty'){
 
@@ -176,6 +270,11 @@ export const getSpecificEvent = async (req, res) => {
 
     const _id = req.body._id
 
+    //sql attack prevention
+    if(typeof _id !== 'string' &&  _id !== undefined){
+        res.send("inalid title")
+        return 
+    }
 
     try{
         const result = await eventModel.findOne({_id})
