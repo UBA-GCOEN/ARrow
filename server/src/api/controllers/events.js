@@ -129,33 +129,33 @@ export const updateEvent = async (req, res) => {
      * adding validation to prevent sql injection
      */
         if(typeof title !== 'string' &&  title !== undefined){
-            res.send("inalid title")
-            return 
+            res.status(400).json({ status: "invalid title" });
+            return;
         }
     
         if(typeof description !== 'string' &&  description !== undefined){
-            res.send("invalid description")
-            return
+            res.status(400).json({ status: "invalid description" });
+            return;
         }
     
         if(typeof eventCoordinator !== 'string' &&  eventCoordinator !== undefined){
-            res.send("invalid eventCoordinatot")
-            return
+            res.status(400).json({ status: "invalid eventCoordinator" });
+            return;
         }
     
         if(typeof time !== 'string' &&  time !==  undefined){
-            res.send("invalid time")
-            return
+            res.status(400).json({ status: "invalid time" });
+            return;
         }
     
         if(typeof venue !== 'string' &&  venue !== undefined){
-            res.send("invalid venue")
-            return
+            res.status(400).json({ status: "invalid venue" });
+            return;
         }
     
         if(typeof guest !== 'string' &&  guest !== undefined){
-            res.send("invalid guest")
-            return
+            res.status(400).json({ status: "invalid guest" });
+            return;
         }
 
 
