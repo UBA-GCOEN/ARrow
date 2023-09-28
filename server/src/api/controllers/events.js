@@ -22,32 +22,32 @@ export const createEvent = async (req, res) => {
     /**
      * adding validation to prevent sql injection
      */
-    if(typeof title !== 'string' &&  title !== undefined){
+    if(typeof title !== 'string' ){
         res.send("inalid title")
         return 
     }
 
-    if(typeof description !== 'string' &&  description !== undefined){
+    if(typeof description !== 'string' ){
         res.send("invalid description")
         return
     }
 
-    if(typeof eventCoordinator !== 'string' &&  eventCoordinator !== undefined){
+    if(typeof eventCoordinator !== 'string' ){
         res.send("invalid eventCoordinatot")
         return
     }
 
-    if(typeof time !== 'string' &&  time !==  undefined){
+    if(typeof time !== 'string' ){
         res.send("invalid time")
         return
     }
 
-    if(typeof venue !== 'string' &&  venue !== undefined){
+    if(typeof venue !== 'string' ){
         res.send("invalid venue")
         return
     }
 
-    if(typeof guest !== 'string' &&  guest !== undefined){
+    if(typeof guest !== 'string' ){
         res.send("invalid guest")
         return
     }
@@ -128,32 +128,32 @@ export const updateEvent = async (req, res) => {
     /**
      * adding validation to prevent sql injection
      */
-        if(typeof title !== "string" &&  title !== undefined){
+        if(typeof title !== "string" ){
             res.status(400).json({ status: "invalid title" });
             return;
         }
     
-        if(typeof description !== "string" &&  description !== undefined){
+        if(typeof description !== "string"){
             res.status(400).json({ status: "invalid description" });
             return;
         }
     
-        if(typeof eventCoordinator !== "string" &&  eventCoordinator !== undefined){
+        if(typeof eventCoordinator !== "string" ){
             res.status(400).json({ status: "invalid eventCoordinator" });
             return;
         }
     
-        if(typeof time !== "string" &&  time !==  undefined){
+        if(typeof time !== "string" ){
             res.status(400).json({ status: "invalid time" });
             return;
         }
     
-        if(typeof venue !== "string" &&  venue !== undefined){
+        if(typeof venue !== "string" ){
             res.status(400).json({ status: "invalid venue" });
             return;
         }
     
-        if(typeof guest !== "string" &&  guest !== undefined){
+        if(typeof guest !== "string" ){
             res.status(400).json({ status: "invalid guest" });
             return;
         }
@@ -222,7 +222,7 @@ export const deleteEvent = async (req, res) =>{
 
 
     //sql attack prevention
-    if(typeof _id !== 'string' &&  _id !== undefined){
+    if(typeof _id !== 'string' ){
         res.send("inalid title")
         return 
     }
@@ -271,7 +271,7 @@ export const getSpecificEvent = async (req, res) => {
     const _id = req.body._id
 
     //sql attack prevention
-    if(typeof _id !== 'string' &&  _id !== undefined){
+    if(typeof _id !== 'string' ){
         res.send("inalid title")
         return 
     }
