@@ -1,3 +1,4 @@
+import express from 'express'
 import eventModel from '../models/eventModel.js'
 
 
@@ -37,7 +38,11 @@ export const createEvent = async (req, res) => {
             })
     
             if(result){
-                res.send("event created successfully")
+                res.json({
+                    msg: "event created successfully",
+                    _id: result._id,
+                    event: result
+                })
             }
             else{
                 res.send("event failed")
@@ -62,9 +67,10 @@ export const createEvent = async (req, res) => {
  * Desc: update the event information or status
  */
 export const updateEvent = async (req, res) => {
-    role = req.role
+    let role = req.role
 
     const { 
+        _id,
         title,
         description,
         eventCoordinator, 
@@ -75,12 +81,20 @@ export const updateEvent = async (req, res) => {
 
     if(role == 'admin' || role == 'faculty'){
 
-        organizerRole = role
-        organizerEmail = req.session.user.user.email
-        organizerName = req.session.user.user.name
+        let organizerRole = role
+        let organizerEmail = req.session.user.user.email
+        let organizerName = req.session.user.user.name
 
         try{
-            const result = await eventModel.updateOne({
+
+            const event = await eventModel.findOne({_id})
+
+            if(!event){
+                res.send("event does not exist")
+                return
+            }
+
+            const result = await event.updateOne({
                 title,
                 description,
                 organizerRole,
@@ -114,7 +128,7 @@ export const updateEvent = async (req, res) => {
  * Desc: delete the event
  */
 export const deleteEvent = async (req, res) =>{
-    role = req.role
+    let role = req.role
 
     const { 
         _id 
@@ -123,14 +137,26 @@ export const deleteEvent = async (req, res) =>{
     if(role == 'admin' || role == 'faculty'){
 
         try{
-            const result = await eventModel.deleteOne({_id})
-    
-            if(result){
-                res.send("event deleted successfully")
+            const event = await eventModel.findOne({_id})
+
+            if(event){
+            const result = await event.deleteOne({_id})
+                if(result){
+                    res.send("event deleted successfully")
+                }
+                else{
+                    res.send("error deleting event")
+                }
             }
+            else{
+                res.send("event does not exist")
+            }
+        
+
         }
         catch(err){
-            console.log(err)
+            res.send(err)
+            return
         }
 
     }
@@ -157,6 +183,9 @@ export const getSpecificEvent = async (req, res) => {
         if(result){
             res.send(result)
         }
+        else{
+            res.send("event does not exist")
+        }
     }
     catch(err){
         console.log(err)
@@ -167,10 +196,10 @@ export const getSpecificEvent = async (req, res) => {
 
 
 /**
- * Route: /event/getAllEvent
+ * Route: /event/getAllEvents
  * Desc: get all events
  */
-export const getAllEvent = async (req, res) =>{
+export const getAllEvents = async (req, res) =>{
     
     try{
         const result = await eventModel.find({})

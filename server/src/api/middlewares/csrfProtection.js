@@ -22,8 +22,8 @@ export  const csrfProtect = (req, res, next) => {
 
           
             if (err) {
-              console.log(req.session)
-              return res.status(403).json({ err });
+               res.status(403).json({ err });
+               return
             }
             next();
           });

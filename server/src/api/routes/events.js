@@ -4,7 +4,7 @@ import { csrfProtect } from '../middlewares/csrfProtection.js';
 import authUser from '../middlewares/authUser.js'
 import { deleteEvent, 
     getSpecificEvent, 
-    getAllEvent, 
+    getAllEvents, 
     updateEvent,
     createEvent 
 } from '../controllers/events.js';
@@ -14,8 +14,8 @@ const router = express.Router();
 
 router.post("/createEvent", session, csrfProtect, authUser, createEvent)
 router.put("/updateEvent", session, csrfProtect, authUser, updateEvent)
-router.get("/getAllEvent", getAllEvent)
+router.get("/getAllEvents", getAllEvents)
 router.get("/getSpecificEvent", getSpecificEvent)
-router.delete("/deleteEvent", deleteEvent)
+router.delete("/deleteEvent", session, csrfProtect, authUser, deleteEvent)
 
 export default router;
