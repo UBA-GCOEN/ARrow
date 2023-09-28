@@ -128,32 +128,32 @@ export const updateEvent = async (req, res) => {
     /**
      * adding validation to prevent sql injection
      */
-        if(typeof title !== 'string' &&  title !== undefined){
+        if(typeof title !== "string" &&  title !== undefined){
             res.status(400).json({ status: "invalid title" });
             return;
         }
     
-        if(typeof description !== 'string' &&  description !== undefined){
+        if(typeof description !== "string" &&  description !== undefined){
             res.status(400).json({ status: "invalid description" });
             return;
         }
     
-        if(typeof eventCoordinator !== 'string' &&  eventCoordinator !== undefined){
+        if(typeof eventCoordinator !== "string" &&  eventCoordinator !== undefined){
             res.status(400).json({ status: "invalid eventCoordinator" });
             return;
         }
     
-        if(typeof time !== 'string' &&  time !==  undefined){
+        if(typeof time !== "string" &&  time !==  undefined){
             res.status(400).json({ status: "invalid time" });
             return;
         }
     
-        if(typeof venue !== 'string' &&  venue !== undefined){
+        if(typeof venue !== "string" &&  venue !== undefined){
             res.status(400).json({ status: "invalid venue" });
             return;
         }
     
-        if(typeof guest !== 'string' &&  guest !== undefined){
+        if(typeof guest !== "string" &&  guest !== undefined){
             res.status(400).json({ status: "invalid guest" });
             return;
         }
