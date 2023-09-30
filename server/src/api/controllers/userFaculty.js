@@ -199,46 +199,58 @@ export const signup = async (req, res) => {
  */
 export const signin = async (req, res) => {
       const {email, password} = req.body  
-      
-      const oldUser = await userFacultyModel.findOne({email})
 
-      const SECRET = process.env.FACULTY_SECRET
+      //sql injection validation
+      if(typeof email !== 'string'){
+        console.log("invalid email")
+        return 
+      }
       
-      if(oldUser){
+      try {
         
-        const isPasswordCorrect = bcrypt.compare(oldUser.password, password)
+          const oldUser = await userFacultyModel.findOne({email})
 
-        if(isPasswordCorrect){
+          const SECRET = process.env.FACULTY_SECRET
           
-          const token = generateToken(oldUser, SECRET);
+          if(oldUser){
+            
+            const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
 
-          req.session.user = {
-            token: token,
-            user: oldUser
+            if(isPasswordCorrect){
+              
+              const token = generateToken(oldUser, SECRET);
+
+              req.session.user = {
+                token: token,
+                user: oldUser
+              }
+
+              res.status(200).json({
+                success: true,
+                result: oldUser,
+                token,
+                csrfToken: req.csrfToken,
+                msg: "Faculty is logged in successfully"
+              });
+
+            }
+            else{
+                res.json({ msg: "Incorrect password" })
+            }
+          }
+          else{
+            req.session.destroy(err => {
+              if (err) {
+                console.error("Error destroying session:", err);
+                res.status(500).send("Internal Server Error");
+              } 
+            });
+            res.json({ msg:"User Faculty does not exist" })
           }
 
-          res.status(200).json({
-            success: true,
-            result: oldUser,
-            token,
-            csrfToken: req.csrfToken,
-            msg: "Faculty is logged in successfully"
-          });
-
-        }
-        else{
-            res.json({ msg: "Incorrect password" })
-        }
-      }
-      else{
-        req.session.destroy(err => {
-          if (err) {
-            console.error("Error destroying session:", err);
-            res.status(500).send("Internal Server Error");
-          } 
-        });
-        res.json({ msg:"User Faculty does not exist" })
-      }
+    } catch (error) {
+      res.send(error)
+    }
 }
 
 
