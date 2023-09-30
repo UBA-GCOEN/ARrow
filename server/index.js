@@ -32,7 +32,7 @@ const limiter = rateLimit({
   max: 100, // limit each IP to 100 requests per windowMs
 });
 
-app.use("/", indexRoute)
+app.use("/", limiter, indexRoute)
 app.use("/test", limiter, testRoute)
 app.use("/userStudent", limiter, userStudent)
 app.use("/userStaff", limiter, userStaff)
