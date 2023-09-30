@@ -1,5 +1,4 @@
 import csrf from 'csurf'
-import session from 'express-session';
 
 const csrfProtection = csrf({ cookie: false });
 
@@ -22,7 +21,6 @@ export  const csrfProtect = (req, res, next) => {
 
           
             if (err) {
-              console.log(req.session)
               return res.status(403).json({ err });
             }
             next();

@@ -1,11 +1,8 @@
 import userFacultyModel from "../models/userFacultyModel.js"
 import bcrypt from 'bcrypt'
 import generateToken from "../middlewares/generateToken.js"
-
-import session from "express-session"
 import * as dotenv from "dotenv";
 dotenv.config();
-
 
 /**
  * Route: /userFaculty
@@ -146,7 +143,7 @@ export const signup = async (req, res) => {
           return;
         }
 
-        if (typeof education !== "string") {
+        if (typeof education !== "number") {
           res.status(400).json({ status: "error" });
           return;
         }
@@ -231,12 +228,6 @@ export const signin = async (req, res) => {
         }
       }
       else{
-        req.session.destroy(err => {
-          if (err) {
-            console.error("Error destroying session:", err);
-            res.status(500).send("Internal Server Error");
-          } 
-        });
         res.json({ msg:"User Faculty does not exist" })
       }
 }
