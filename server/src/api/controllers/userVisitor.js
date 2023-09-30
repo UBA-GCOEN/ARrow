@@ -1,6 +1,8 @@
 import userVisitorModel from "../models/userVisitorModel.js"
 import bcrypt from 'bcrypt'
 import generateToken from "../middlewares/generateToken.js"
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * Route: /userVisitor

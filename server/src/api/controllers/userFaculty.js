@@ -6,7 +6,6 @@ import session from "express-session"
 import * as dotenv from "dotenv";
 dotenv.config();
 
-
 /**
  * Route: /userFaculty
  * Desc: to show or access user Faculty
