@@ -37,11 +37,12 @@ export const signup = async (req, res) => {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$%#^&*])(?=.*[0-9]).{8,}$/;
 
       const emailDomains = [
-       "@gmail.com",
-       "@yahoo.com",
-       "@hotmail.com",
-       "@aol.com",
-       "@outlook.com",
+        "@gmail.com",
+        "@yahoo.com",
+        "@hotmail.com",
+        "@aol.com",
+        "@outlook.com",
+        "@gcoen.ac.in",
        ];
 
 

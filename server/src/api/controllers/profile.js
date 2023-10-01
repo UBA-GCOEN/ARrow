@@ -25,6 +25,7 @@ export const updateProfile = async (req, res) => {
         "@hotmail.com",
         "@aol.com",
         "@outlook.com",
+        "@gcoen.ac.in",
         ];
 
     var result = {}    
