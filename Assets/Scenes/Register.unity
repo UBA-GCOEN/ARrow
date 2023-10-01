@@ -1366,7 +1366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.0000000042201, y: -1258}
+  m_AnchoredPosition: {x: 0, y: -1258}
   m_SizeDelta: {x: 900, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &822043007
@@ -1657,13 +1657,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1019245250}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1019245254}
+        m_TargetAssemblyTypeName: Login, Assembly-CSharp
+        m_MethodName: onRegisterButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1902,9 +1902,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab51b09136a99b4cb63b43b50e45216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiEndpoint: https://arrowserver.vercel.app/userAdmin/signup
+  apiEndpoint: /userAdmin/signup
   email: {fileID: 244108177}
   password: {fileID: 119755640}
+  confirmPassword: {fileID: 822043007}
 --- !u!1 &1039589199
 GameObject:
   m_ObjectHideFlags: 0

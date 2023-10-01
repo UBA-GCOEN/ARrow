@@ -8,10 +8,11 @@ using System.Text.RegularExpressions;
 
 public class Login : MonoBehaviour
 {
-    [SerializeField] private string apiEndpoint = "https://arrowserver.vercel.app/userAdmin/signup";
+    private string baseURL = "https://arrowserver.vercel.app";
+    [SerializeField] private string apiEndpoint;
     [SerializeField] private TMP_InputField email;
     [SerializeField] private TMP_InputField password;
-
+    [SerializeField] private TMP_InputField confirmPassword;
     public void onLoginButtonClick()
     {
         StartCoroutine(TryLogin());
@@ -24,14 +25,15 @@ public class Login : MonoBehaviour
 
     private IEnumerator TryLogin()
     {
-        // string email = email.text;
-        // string password = password.text;
+        string LoginEndpoint = baseURL + apiEndpoint;
+        string email = this.email.text;
+        string password = this.password.text;
 
         WWWForm form = new WWWForm();
-        form.AddField("email", email.text);
-        form.AddField("password", password.text);
+        form.AddField("email", email);
+        form.AddField("password", password);
 
-        UnityWebRequest request = UnityWebRequest.Post(apiEndpoint, form);
+        UnityWebRequest request = UnityWebRequest.Post(LoginEndpoint, form);
         var handler = request.SendWebRequest();
 
         float startTime = 0.0f;
@@ -49,32 +51,34 @@ public class Login : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            string response = JsonUtility.FromJson<string>(request.downloadHandler.text);
-            Debug.LogError(response);
+            SigninResponse response = JsonUtility.FromJson<SigninResponse>(request.downloadHandler.text);
+            Debug.LogError(response.msg);
             
         }
         else
         {
-           Debug.LogError("Error: " + request.error);
+           Debug.LogError("Error: " + request);
+           Debug.LogError("Response: " + request.downloadHandler.text);
         }
-
 
         yield return null;
     }
 
     private IEnumerator TryRegister()
     {
+        string registerEndpoint = baseURL + apiEndpoint;
         string email = this.email.text;
         string password = this.password.text;
         string name = "Sidd";
+        string confirmPassword = this.confirmPassword.text;
 
         WWWForm form = new WWWForm();
         form.AddField("name", name);
         form.AddField("email", email);
         form.AddField("password", password);
-        form.AddField("confirmPassword", password);
+        form.AddField("confirmPassword", confirmPassword);
 
-        UnityWebRequest request = UnityWebRequest.Post(apiEndpoint, form);
+        UnityWebRequest request = UnityWebRequest.Post(registerEndpoint, form);
         var handler = request.SendWebRequest();
 
         float startTime = 0.0f;
@@ -92,13 +96,14 @@ public class Login : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            string response = JsonUtility.FromJson<string>(request.downloadHandler.text);
-            Debug.LogError(response);
+            SignupResponse response = JsonUtility.FromJson<SignupResponse>(request.downloadHandler.text);
+            Debug.LogError(response.msg);
             
         }
         else
         {
            Debug.LogError("Error: " + request);
+           Debug.LogError("Response: " + request.downloadHandler.text);
         }
 
         yield return null;

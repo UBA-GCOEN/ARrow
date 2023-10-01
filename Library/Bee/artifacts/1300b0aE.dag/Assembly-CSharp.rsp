@@ -400,6 +400,8 @@
 "Assets/ExampleAssets/Scripts/ARFeatheredPlaneMeshVisualizer.cs"
 "Assets/Scripts/Login.cs"
 "Assets/Scripts/SceneLoader.cs"
+"Assets/Scripts/SigninResponse.cs"
+"Assets/Scripts/SignupResponse.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs"
