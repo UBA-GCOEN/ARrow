@@ -19,11 +19,7 @@ app.use(cors());
 
 import indexRoute from "./src/api/routes/index.js";
 import testRoute from "./src/api/routes/test.js";
-import userStudent from "./src/api/routes/userStudent.js";
-import userAdmin from "./src/api/routes/userAdmin.js";
-import userStaff from "./src/api/routes/userStaff.js";
-import userVisitor from "./src/api/routes/userVisitor.js";
-import userFaculty from "./src/api/routes/userFaculty.js";
+import user from "./src/api/routes/user.js";
 import profile from "./src/api/routes/profile.js";
 import event from "./src/api/routes/events.js";
 
@@ -35,11 +31,7 @@ const limiter = rateLimit({
 
 app.use("/", limiter, indexRoute)
 app.use("/test", limiter, testRoute)
-app.use("/userStudent", limiter, userStudent)
-app.use("/userStaff", limiter, userStaff)
-app.use("/userAdmin", limiter, userAdmin)
-app.use("/userVisitor", limiter, userVisitor)
-app.use("/userFaculty", limiter, userFaculty)
+app.use("/user", limiter, user)
 app.use("/profile", limiter, profile)
 app.use("/event", limiter, event)
 
