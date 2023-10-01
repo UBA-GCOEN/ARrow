@@ -2001,12 +2001,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab51b09136a99b4cb63b43b50e45216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiEndpoint: /userAdmin/signup
+  apiEndpoint: /user/signup
   email: {fileID: 244108177}
   password: {fileID: 119755640}
   confirmPassword: {fileID: 822043007}
   serverMsg: {fileID: 1911395496}
-  loader: {fileID: 0}
+  loader: {fileID: 1495411264}
 --- !u!1 &1039589199
 GameObject:
   m_ObjectHideFlags: 0

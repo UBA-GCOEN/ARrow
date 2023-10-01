@@ -1698,7 +1698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab51b09136a99b4cb63b43b50e45216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiEndpoint: /userAdmin/signin
+  apiEndpoint: /user/signin
   email: {fileID: 1437832324}
   password: {fileID: 1564137603}
   confirmPassword: {fileID: 0}
