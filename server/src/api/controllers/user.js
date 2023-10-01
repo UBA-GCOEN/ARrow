@@ -98,11 +98,17 @@ export const signup = async (req, res) => {
              });
     
              if(result){
-                res.json({msg: "user added successfully"})
+                res.status(200).json({
+                  success: true,
+                  msg: "user added successfully"
+                })
              }
            }
            else{
-            res.json({msg: "user already exist"})
+            res.status(403).json({
+              success: false,
+              msg: "user already exist"
+            })
            }
       }
       catch(err){

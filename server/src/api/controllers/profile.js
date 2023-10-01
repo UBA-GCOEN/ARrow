@@ -151,6 +151,7 @@ export const updateProfile = async (req, res) => {
 
         
         res.json({
+            success: true,
             msg: "user "+newResult.role+" updated successfully",
             user: newResult
     })
