@@ -1,7 +1,5 @@
 import jwt from "jsonwebtoken"
 
-var SECRET = ''
-
 const authUser = (req, res, next) => {
     
     try {
@@ -9,31 +7,20 @@ const authUser = (req, res, next) => {
         const isCustomAuth = token.length < 500
         let decodedData 
         if(token && isCustomAuth){
-          if(req.session.user && req.session.user.user.role === 'admin'){
-            SECRET = process.env.ADMIN_SECRET
-          }
-          else if(req.session.user && req.session.user.user.role === 'faculty'){
-            SECRET = process.env.FACULTY_SECRET
-          }
-          else if(req.session.user && req.session.user.user.role === 'staff'){
-            SECRET = process.env.STAFF_SECRET
-          }
-          else if(req.session.user && req.session.user.user.role === 'student'){
-            SECRET = process.env.STUDENT_SECRET
-          }
-          else if(req.session.user && req.session.user.user.role === 'visitor'){
-            SECRET = process.env.VISITOR_SECRET
+          let SECRET = ''
+          if(req.session.user ){
+           SECRET = process.env.USER_SECRET
           }
           else{
             res.json({msg: "Not authorized - login first"})
           }
   
           decodedData = jwt.verify(token, SECRET)  
-          req.role = decodedData?.role    
+          req.email = decodedData?.email    
         }
         else{
           decodedData = jwt.decode(token)  
-          req.role = decodedData?.role  
+          req.email = decodedData?.email  
         }
 
         next()

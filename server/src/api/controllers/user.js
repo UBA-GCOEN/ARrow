@@ -1,41 +1,36 @@
-import userVisitorModel from "../models/userVisitorModel.js"
+import userModel from "../models/userModel.js"
 import bcrypt from 'bcrypt'
 import generateToken from "../middlewares/generateToken.js"
 import * as dotenv from "dotenv";
 dotenv.config();
 
 /**
- * Route: /userVisitor
- * Desc: to show or access user Visitor
+ * Route: /user
+ * Desc: to show or access user
  */
-export const userVisitor = async (req, res) => {
-    res.status(200).json({message:"Show user Visitor signin/signup page"})
+export const user = async (req, res) => {
+    res.status(200).json({message:"Show user signin/signup page"})
 
 }
 
 
 
 /**
- * Route: /userVisitor/signup
- * Desc: Visitor user sign up
+ * Route: /user/signup
+ * Desc: user sign up
  */
 export const signup = async (req, res) => {
-       const { 
-        name, 
-        email, 
-        password, 
-        confirmPassword, 
-        bio
-      } = req.body
+       const { email, password, confirmPassword} = req.body
 
               
        //check if any field is not empty
-       if (!name || !email || !password || !confirmPassword) {
+       if ( !email || !password || !confirmPassword) {
         return res.status(404).json({
           success: false,
-          message: "Please Fill all the Details.",
+          msg: "Please Fill all the Details.",
         });
       }
+
       
       //password and email constrains
       const passwordRegex =
@@ -51,47 +46,37 @@ export const signup = async (req, res) => {
 
 
 
-       //check name length
-       if (name.length < 2) {
-         return res
-           .status(404)
-           .json({ message: "Name must be atleast 2 characters long." });
-       }
-
-
-
        // check email format
        if (!emailDomains.some((v) => email.indexOf(v) >= 0)) {
          return res.status(404).json({
-        message: "Please enter a valid email address",
+        success: false,
+        msg: "Please enter a valid email address",
       })};
 
 
       // check password format
        if (!passwordRegex.test(password)) {
          return res.status(404).json({
-        message: "Password must be at least 8 characters long and include at least 1 uppercase letter, 1 lowercase letter, 1 symbol (@$%#^&*), and 1 number (0-9)",
+        success: false,
+        msg: "Password must be at least 8 characters long and include at least 1 uppercase letter, 1 lowercase letter, 1 symbol (@$%#^&*), and 1 number (0-9)",
         });
       }            
  
         
       // check password match
        if(password != confirmPassword){
-         res.json({msg:"Password does not match"})
+         res.json({
+             success: false,
+             msg:"Password does not match"})
          }    
+
        
-
-
+         
          /**
           * checking field types
           * to avoid sql attacks
           */
-         if (typeof name !== "string") {
-          res.status(400).json({ status: "error" });
-          return;
-        }
-  
-        if (typeof email !== "string") {
+        if (typeof email !== "string" && email !== undefined) {
           res.status(400).json({ status: "error" });
           return;
         }
@@ -99,15 +84,10 @@ export const signup = async (req, res) => {
         if (typeof password !== "string" || typeof confirmPassword !== "string") {
           res.status(400).json({ status: "error" });
           return;
-        }    
-        
-        if (typeof bio !== "string") {
-          res.status(400).json({ status: "error" });
-          return;
-        }
-        
+        }         
+       
 
-       const oldUser = await userVisitorModel.findOne({ email });
+       const oldUser = await userModel.findOne({ email });
        try{
         if(!oldUser){
  
@@ -115,20 +95,22 @@ export const signup = async (req, res) => {
           // hash password with bcrypt
            const hashedPassword = await bcrypt.hash(password, 12)
            
-           // create userVisitor in database 
-            const result = userVisitorModel.create({
-                name,
+           // create user in database
+            const result = userModel.create({
                 email,
                 password: hashedPassword,
-                bio
              });
     
              if(result){
-                res.json({msg: "user Visitor added successfully"})
+                res.json({
+                    success: false,
+                    msg: "User Added Successfully !"})
              }
            }
            else{
-            res.json({msg: "user already exist"})
+            res.json({
+                success: false,
+                msg: "user already exist"})
            }
       }
       catch(err){
@@ -141,19 +123,19 @@ export const signup = async (req, res) => {
 
 
 /**
- * Route: /userVisitor/signin
- * Desc: user Visitor sign in
+ * Route: /user/signin
+ * Desc: user sign in
  */
 export const signin = async (req, res) => {
       const {email, password} = req.body  
       
-      const oldUser = await userVisitorModel.findOne({email})
+      const oldUser = await userModel.findOne({email})
 
-      const SECRET = process.env.VISITOR_SECRET
+      const SECRET = process.env.USER_SECRET
       
       if(oldUser){
         
-        const isPasswordCorrect = await bcrypt.compare(oldUser.password, password)
+        const isPasswordCorrect = await bcrypt.compare(password, oldUser.password)
 
         if(isPasswordCorrect){
           
@@ -168,8 +150,8 @@ export const signin = async (req, res) => {
             success: true,
             result: oldUser,
             token,
-            csrfToken: req.csrfToken,
-            msg: "Visitor is logged in successfully"
+            // csrfToken: req.csrfToken,
+            msg: "User is logged in successfully"
           });
 
         }
@@ -190,7 +172,7 @@ export const signin = async (req, res) => {
             res.status(500).send("Internal Server Error");
           } 
         });
-        res.json({ msg:"User Visitor does not exist" })
+        res.json({ msg:"User does not exist" })
       }
 }
 
