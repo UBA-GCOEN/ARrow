@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
-import rateLimit from 'express-rate-limit';
+// import rateLimit from 'express-rate-limit';
 import csrf from 'csurf';
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -23,11 +23,13 @@ import user from "./src/api/routes/user.js";
 import profile from "./src/api/routes/profile.js";
 import event from "./src/api/routes/events.js";
 
-// //rate limiter
+
+//rate limiter
 // const limiter = rateLimit({
 //   windowMs: 15 * 60 * 1000, // 15 minutes
 //   max: 100, // limit each IP to 100 requests per windowMs
 // });
+
 
 // app.use("/", limiter, indexRoute)
 // app.use("/test", limiter, testRoute)
@@ -40,6 +42,7 @@ app.use("/test", testRoute)
 app.use("/user", user)
 app.use("/profile", profile)
 app.use("/event", event)
+
 
 app.use(csrf)
 
