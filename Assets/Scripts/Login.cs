@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class Login : MonoBehaviour
 {
-    // private string baseURL = "https://arrowserver.vercel.app"; 
-    private string baseURL = "http://localhost:5000"; // To run server locally.
+    private string baseURL = "https://arrowserver.vercel.app"; 
+    // private string baseURL = "http://localhost:5000"; // To run server locally.
     [SerializeField] private string apiEndpoint;
     [SerializeField] private TMP_InputField email;
     [SerializeField] private TMP_InputField password;
