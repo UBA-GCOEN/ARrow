@@ -15,13 +15,17 @@ public class Login : MonoBehaviour
     [SerializeField] private TMP_InputField email;
     [SerializeField] private TMP_InputField password;
     [SerializeField] private TMP_InputField confirmPassword;
+    public TextMeshProUGUI serverMsg;
+    public GameObject loader;
     public void onLoginButtonClick()
     {
+        loader.SetActive(true);
         StartCoroutine(TryLogin());
     }
 
     public void onRegisterButtonClick()
     {
+        loader.SetActive(true);
         StartCoroutine(TryRegister());
     }
 
@@ -53,20 +57,30 @@ public class Login : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
+            loader.SetActive(false);
             SigninResponse response = JsonUtility.FromJson<SigninResponse>(request.downloadHandler.text);
             Debug.LogError(response.success);
             Debug.LogError(response.result);
             Debug.LogError(response.token);
             Debug.LogError(response.msg);
 
-            PlayerPrefs.SetString("UserName", response.result);
-            
-            SceneManager.LoadScene("Home");
+            if (response.success)
+            {
+                PlayerPrefs.SetString("UserName", response.result);
+                SceneManager.LoadScene("Home");
+            }
+            else
+            {
+                serverMsg.text = response.msg;
+                Debug.LogError(response.msg);
+            }
+
         }
         else
         {
-           Debug.LogError("Error: " + request);
-           Debug.LogError("Response: " + request.downloadHandler.text);
+            loader.SetActive(false);
+            Debug.LogError("Error: " + request);
+            Debug.LogError("Response: " + request.downloadHandler.text);
         }
 
         yield return null;
@@ -104,14 +118,31 @@ public class Login : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
+            loader.SetActive(false);
             SignupResponse response = JsonUtility.FromJson<SignupResponse>(request.downloadHandler.text);
+
+            if (response.success)
+            {
+                serverMsg.text = response.msg;
+                this.email.text = "";
+                this.password.text = "";
+                this.confirmPassword.text = "";
+            }
+            else
+            {
+                serverMsg.text = response.msg;
+            }
+
             Debug.LogError(response.msg);
-            
+
         }
         else
         {
-           Debug.LogError("Error: " + request);
-           Debug.LogError("Response: " + request.downloadHandler.text);
+            loader.SetActive(false);
+            SignupResponse response = JsonUtility.FromJson<SignupResponse>(request.downloadHandler.text);
+            serverMsg.text = response.msg;
+            Debug.LogError("Error: " + request);
+            Debug.LogError("Response: " + request.downloadHandler.text);
         }
 
         yield return null;
