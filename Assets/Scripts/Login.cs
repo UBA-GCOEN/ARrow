@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 
 public class Login : MonoBehaviour
 {
@@ -54,6 +55,7 @@ public class Login : MonoBehaviour
             SigninResponse response = JsonUtility.FromJson<SigninResponse>(request.downloadHandler.text);
             Debug.LogError(response.msg);
             
+            SceneManager.LoadScene("Home");
         }
         else
         {
