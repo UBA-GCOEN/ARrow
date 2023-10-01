@@ -9,6 +9,7 @@ import {user, signup, signin} from "../controllers/user.js";
 
 router.get("/", user)
 router.post("/signup", signup)
-router.post("/signin", session, csrfProtect, signin)
+// router.post("/signin", session, csrfProtect, signin)
+router.post("/signin", session, signin)
 
 export default router;
