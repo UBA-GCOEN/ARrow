@@ -1,6 +1,8 @@
 import userAdminModel from "../models/userAdminModel.js"
 import bcrypt from 'bcrypt'
 import generateToken from "../middlewares/generateToken.js"
+import * as dotenv from "dotenv";
+dotenv.config();
 
 /**
  * Route: /userAdmin
@@ -160,6 +162,12 @@ export const signin = async (req, res) => {
 
         }
         else{
+            req.session.destroy(err => {
+              if (err) {
+                console.error("Error destroying session:", err);
+                res.status(500).send("Internal Server Error");
+              } 
+            });
             res.json({ msg: "Incorrect password" })
         }
       }

@@ -25,6 +25,7 @@ import userStaff from "./src/api/routes/userStaff.js";
 import userVisitor from "./src/api/routes/userVisitor.js";
 import userFaculty from "./src/api/routes/userFaculty.js";
 import profile from "./src/api/routes/profile.js";
+import event from "./src/api/routes/events.js";
 
 //rate limiter
 // const limiter = rateLimit({
