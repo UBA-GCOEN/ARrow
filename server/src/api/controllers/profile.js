@@ -62,7 +62,6 @@ export const updateProfile = async (req, res) => {
         education,
         intrest,
         mobile,
-        role
      } = req.body
 
 
@@ -121,10 +120,10 @@ export const updateProfile = async (req, res) => {
         return;
       }
       
-      if (typeof role !== "string") {
-        res.status(400).json({ status: "error"+role+typeof role });
-        return;
-      }
+      // if (typeof role !== "string") {
+      //   res.status(400).json({ status: "error"+role+typeof role });
+      //   return;
+      // }
 
 
 
@@ -136,11 +135,11 @@ export const updateProfile = async (req, res) => {
             branch,
             subjects,
             designation,
+            enrollNo,
             education,
             bio,
             intrest,
             mobile,
-            role
          });
 
          
