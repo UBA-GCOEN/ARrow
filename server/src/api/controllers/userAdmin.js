@@ -141,7 +141,7 @@ export const signin = async (req, res) => {
       
       if(oldUser){
         
-        const isPasswordCorrect = await bcrypt.compare(oldUser.password, password)
+        const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
 
         if(isPasswordCorrect){
           
