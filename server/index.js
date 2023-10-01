@@ -22,6 +22,7 @@ import testRoute from "./src/api/routes/test.js";
 import user from "./src/api/routes/user.js";
 import profile from "./src/api/routes/profile.js";
 import event from "./src/api/routes/events.js";
+import userAdmin from "./src/api/routes/userAdmin.js";
 
 
 //rate limiter
@@ -43,6 +44,7 @@ app.use("/user", user)
 app.use("/profile", profile)
 app.use("/event", event)
 
+app.use("/userAdmin", userAdmin)
 
 app.use(csrf)
 
