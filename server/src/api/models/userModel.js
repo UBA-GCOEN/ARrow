@@ -6,6 +6,7 @@ const userModel = mongoose.Schema({
      id: { type: String },
      googleId: { type: String },
      name: { type: String },
+     collegeEmail: { type: String },
      email: { type: String, required: true },
      password: { type: String },
      role: { type: String, default: 'faculty'},

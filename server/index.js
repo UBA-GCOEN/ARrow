@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
-import rateLimit from 'express-rate-limit';
+// import rateLimit from 'express-rate-limit';
 import csrf from 'csurf';
 import './src/api/middlewares/passportConfig.js'
 import * as dotenv from "dotenv";
@@ -80,12 +80,12 @@ app.get('/auth/failed', (req, res)=>{
 
 
 
-
-// //rate limiter
+//rate limiter
 // const limiter = rateLimit({
 //   windowMs: 15 * 60 * 1000, // 15 minutes
 //   max: 100, // limit each IP to 100 requests per windowMs
 // });
+
 
 // app.use("/", limiter, indexRoute)
 // app.use("/test", limiter, testRoute)
@@ -99,6 +99,7 @@ app.use("/user", user)
 app.use("/profile", profile)
 app.use("/event", event)
 // app.use(googleAuth)
+
 
 app.use(csrf)
 
