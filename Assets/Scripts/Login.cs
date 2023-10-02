@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class Login : MonoBehaviour
 {
-    private string baseURL = "https://arrowserver.vercel.app"; 
+    private string baseURL = "https://arrowserver.vercel.app";
     // private string baseURL = "http://localhost:5000"; // To run server locally.
     [SerializeField] private string apiEndpoint;
     [SerializeField] private TMP_InputField email;
@@ -123,10 +123,7 @@ public class Login : MonoBehaviour
 
             if (response.success)
             {
-                serverMsg.text = response.msg;
-                this.email.text = "";
-                this.password.text = "";
-                this.confirmPassword.text = "";
+                SceneManager.LoadScene("[Ob]Start");
             }
             else
             {
