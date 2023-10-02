@@ -18,7 +18,7 @@ public class RadioButtonController : MonoBehaviour
         string nextSceneName = "";
         if (toggle.name != "Guest")
         {
-            nextSceneName = "Ob-" + toggle.name + "-1";
+            nextSceneName = "Ob-" + toggle.name;
         }
         else
         {

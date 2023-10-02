@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 483190778}
   - component: {fileID: 483190779}
   m_Layer: 5
-  m_Name: Staff
+  m_Name: Staff-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2000,7 +2000,7 @@ GameObject:
   - component: {fileID: 1508893833}
   - component: {fileID: 1508893834}
   m_Layer: 5
-  m_Name: Student
+  m_Name: Student-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2458,7 +2458,7 @@ GameObject:
   - component: {fileID: 1741769967}
   - component: {fileID: 1741769968}
   m_Layer: 5
-  m_Name: Faculty
+  m_Name: Faculty-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
