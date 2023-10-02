@@ -103,7 +103,7 @@ export const signup = async (req, res) => {
     
              if(result){
                 res.json({
-                    success: false,
+                    success: true,
                     msg: "User Added Successfully !"})
              }
            }
