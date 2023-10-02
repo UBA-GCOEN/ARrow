@@ -27,7 +27,7 @@ export const signup = async (req, res, next) => {
        if ( !email || !password || !confirmPassword) {
         return res.status(404).json({
           success: false,
-          message: "Please Fill all the Details.",
+          msg: "Please Fill all the Details.",
         });
       }
 
@@ -50,21 +50,25 @@ export const signup = async (req, res, next) => {
        // check email format
        if (!emailDomains.some((v) => email.indexOf(v) >= 0)) {
          return res.status(404).json({
-        message: "Please enter a valid email address",
+        success: false,
+        msg: "Please enter a valid email address",
       })};
 
 
       // check password format
        if (!passwordRegex.test(password)) {
          return res.status(404).json({
-        message: "Password must be at least 8 characters long and include at least 1 uppercase letter, 1 lowercase letter, 1 symbol (@$%#^&*), and 1 number (0-9)",
+        success: false,
+        msg: "Password must be at least 8 characters long and include at least 1 uppercase letter, 1 lowercase letter, 1 symbol (@$%#^&*), and 1 number (0-9)",
         });
       }            
  
         
       // check password match
        if(password != confirmPassword){
-         res.json({msg:"Password does not match"})
+         res.json({
+             success: false,
+             msg:"Password does not match"})
          }    
 
        
@@ -125,6 +129,7 @@ export const signup = async (req, res, next) => {
               success: false,
               msg: "user already exist"
             })
+             
            }
       }
       catch(err){
@@ -162,7 +167,7 @@ export const signin = async (req, res) => {
 
           res.status(200).json({
             success: true,
-            result: oldUser,
+            result: oldUser.email,
             token,
             // csrfToken: req.csrfToken,
             msg: "User is logged in successfully"
