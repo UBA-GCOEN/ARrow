@@ -7,7 +7,25 @@ using TMPro;
 public class SceneLoader : MonoBehaviour
 {
     public string backScene;
-    
+    private void Start()
+    {
+        // if (IsUserAuthenticated())
+        // {
+        //     if (IsUserOnboarded())
+        //     {
+        //         SceneManager.LoadScene("Home");
+        //     }
+        //     else
+        //     {
+        //         SceneManager.LoadScene("[Ob]Start");
+        //     }
+        // }
+        // else
+        // {
+        //     SceneManager.LoadScene("Startup(login)");
+        // }
+    }
+
     void Update()
     {
         // Check for the Android back button press

@@ -148,7 +148,7 @@ export const signin = async (req, res) => {
 
           res.status(200).json({
             success: true,
-            result: oldUser.email,
+            result: oldUser,
             token,
             // csrfToken: req.csrfToken,
             msg: "User is logged in successfully"

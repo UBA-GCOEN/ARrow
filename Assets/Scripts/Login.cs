@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class Login : MonoBehaviour
 {
-    private string baseURL = "https://arrowserver.vercel.app";
-    // private string baseURL = "http://localhost:5000"; // To run server locally.
+    // private string baseURL = "https://arrowserver.vercel.app";
+    private string baseURL = "http://localhost:5000"; // To run server locally.
     [SerializeField] private string apiEndpoint;
     [SerializeField] private TMP_InputField email;
     [SerializeField] private TMP_InputField password;
@@ -66,7 +66,11 @@ public class Login : MonoBehaviour
 
             if (response.success)
             {
-                PlayerPrefs.SetString("UserName", response.result);
+                PlayerPrefs.SetString("Token", response.token);
+                PlayerPrefs.SetString("UserData", JsonUtility.ToJson(response.result));
+
+                Debug.Log(response.token);
+                Debug.Log(JsonUtility.ToJson(response.result));
                 SceneManager.LoadScene("Home");
             }
             else

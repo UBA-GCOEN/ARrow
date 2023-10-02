@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Onboarding Scenes/Staff Scene/Ob-Staff-1.unity
     guid: 4d6ce0c1b43c08f4f94a7d7ab64f54fc
+  - enabled: 1
+    path: Assets/Scenes/Onboarding Scenes/Student Scenes/Ob-Student-2.unity
+    guid: 24aa7b4ea194d4247bd1e97775bd3d59
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
