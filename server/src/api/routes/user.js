@@ -8,7 +8,7 @@ import {user, signup, signin} from "../controllers/user.js";
 
 
 router.get("/", user)
-router.post("/signup", signup)
+router.post("/signup", session, signup)
 // router.post("/signin", session, csrfProtect, signin)
 router.post("/signin", session, signin)
 

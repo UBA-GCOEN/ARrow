@@ -19,7 +19,7 @@ export const user = async (req, res) => {
  * Route: /user/signup
  * Desc: user sign up
  */
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
        const { email, password, confirmPassword} = req.body
 
               
@@ -37,11 +37,12 @@ export const signup = async (req, res) => {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$%#^&*])(?=.*[0-9]).{8,}$/;
 
       const emailDomains = [
-       "@gmail.com",
-       "@yahoo.com",
-       "@hotmail.com",
-       "@aol.com",
-       "@outlook.com",
+        "@gmail.com",
+        "@yahoo.com",
+        "@hotmail.com",
+        "@aol.com",
+        "@outlook.com",
+        "@gcoen.ac.in",
        ];
 
 
@@ -102,15 +103,33 @@ export const signup = async (req, res) => {
              });
     
              if(result){
-                res.json({
-                    success: true,
-                    msg: "User Added Successfully !"})
+
+              const oldUser = await userModel.findOne({email})
+
+              const SECRET = process.env.USER_SECRET
+              
+              const token = generateToken(oldUser, SECRET);
+
+              req.session.user = {
+                token: token,
+                user: oldUser
+              }
+    
+              res.status(200).json({
+                success: true,
+                result: oldUser,
+                token,
+                // csrfToken: req.csrfToken,
+                msg: "User added and logged in successfully"
+              });
              }
            }
            else{
-            res.json({
-                success: false,
-                msg: "user already exist"})
+            res.status(403).json({
+              success: false,
+              msg: "user already exist"
+            })
+             
            }
       }
       catch(err){
