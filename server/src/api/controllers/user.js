@@ -19,7 +19,7 @@ export const user = async (req, res) => {
  * Route: /user/signup
  * Desc: user sign up
  */
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
        const { email, password, confirmPassword} = req.body
 
               
@@ -99,10 +99,25 @@ export const signup = async (req, res) => {
              });
     
              if(result){
-                res.status(200).json({
-                  success: true,
-                  msg: "user added successfully"
-                })
+
+              const oldUser = await userModel.findOne({email})
+
+              const SECRET = process.env.USER_SECRET
+              
+              const token = generateToken(oldUser, SECRET);
+
+              req.session.user = {
+                token: token,
+                user: oldUser
+              }
+    
+              res.status(200).json({
+                success: true,
+                result: oldUser,
+                token,
+                // csrfToken: req.csrfToken,
+                msg: "User added and logged in successfully"
+              });
              }
            }
            else{
