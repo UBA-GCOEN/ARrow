@@ -4,9 +4,10 @@ import sanitizerPlugin from 'mongoose-sanitizer'
 // User schema
 const userModel = mongoose.Schema({
      id: { type: String },
+     googleId: { type: String },
      name: { type: String },
      email: { type: String, required: true },
-     password: { type: String, required: true },
+     password: { type: String },
      role: { type: String, default: 'faculty'},
      branch: { type: String },
      subjects: { type: String },
