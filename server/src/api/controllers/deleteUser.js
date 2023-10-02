@@ -45,6 +45,7 @@ export const deleteUser = async (req, res) => {
         "@hotmail.com",
         "@aol.com",
         "@outlook.com",
+        "@gcoen.ac.in",
         ];
 
  
