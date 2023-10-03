@@ -40,7 +40,7 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: 19419ff227619974cb83ec980bde3af5, type: 3}
+  - logo: {fileID: 21300000, guid: b42cfba59ded54c428cafce0ef86e7e8, type: 3}
     duration: 2
   m_VirtualRealitySplashScreen: {fileID: 2800000, guid: b42cfba59ded54c428cafce0ef86e7e8,
     type: 3}
@@ -137,13 +137,7 @@ PlayerSettings:
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
   bundleVersion: 1.0
-  preloadedAssets:
-  - {fileID: 4800000, guid: c9f956787b1d945e7b36e0516201fc76, type: 3}
-  - {fileID: 4800000, guid: 0945859e5a1034c2cb6dce53cb4fb899, type: 3}
-  - {fileID: 11400000, guid: 1eb95d77acb39444e8cf44313496a874, type: 2}
-  - {fileID: 7902032969412398322, guid: 58f40b12bbc864f3c96c6505a9a1e1e3, type: 2}
-  - {fileID: 11400000, guid: 7c8dd98ea9509454b9df2c29918ede40, type: 2}
-  - {fileID: 891873303134440036, guid: 6bb381a8ba31f114d9724357633b4625, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -672,7 +666,8 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: 
   additionalCompilerArguments: {}
   platformArchitecture:
     iPhone: 1

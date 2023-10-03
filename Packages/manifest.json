@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.sabresaurus.playerprefseditor": "file:C:/Users/shimp/Downloads/PlayerPrefsEditor-1.4.1/PlayerPrefsEditor-1.4.1",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "2.0.5",
     "com.unity.feature.ar": "1.0.1",
