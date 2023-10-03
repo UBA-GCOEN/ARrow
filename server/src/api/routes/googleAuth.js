@@ -1,8 +1,10 @@
 import express from 'express';
 const router = express.Router();
-import { authGoogle, callbackGoogle }  from '../controllers/googleAuth.js'
-import session from '../middlewares/session.js';
+import { authGoogle, callbackGoogle, authenticated, failed }  from '../controllers/googleAuth.js'
 
-router.get("/auth/google",session,authGoogle)
-router.get("/auth/google/callback",session, callbackGoogle)
+
+router.get('/google',authGoogle)
+router.get('/google/callback', callbackGoogle)
+router.get('/protected', authenticated)
+router.get('/failed', failed)
 export default router;

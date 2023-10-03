@@ -4,11 +4,9 @@ import mongoose from "mongoose";
 import cors from "cors";
 // import rateLimit from 'express-rate-limit';
 import csrf from 'csurf';
-import './src/api/middlewares/passportConfig.js'
 import * as dotenv from "dotenv";
 dotenv.config();
-import  passport  from 'passport'
-import session from "express-session";
+import initializePassport from './src/api/middlewares/passportConfig.js'
 
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URI = process.env.MONGODB_URI;
@@ -20,21 +18,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 
-import generateToken from "./src/api/middlewares/generateToken.js";
-
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true
-},
- (next)=>{
-  next()
- }
-))
-app.use(passport.initialize())
-app.use(passport.session())
-
-
+initializePassport(app)
 
 
 
@@ -44,39 +28,6 @@ import user from "./src/api/routes/user.js";
 import profile from "./src/api/routes/profile.js";
 import event from "./src/api/routes/events.js";
 import googleAuth from "./src/api/routes/googleAuth.js"
-
-
-
-
-
-/**
- * google auths
- */
-app.get('/auth/google', passport.authenticate('google', { scope: [ 'email', 'profile' ]}));
-
-app.get('/auth/google/callback',
-    passport.authenticate( 'google', {successRedirect: '/auth/protected',
-    failureRedirect: '/auth/failed'  
-  })
-)
-
-app.get('/auth/protected', (req, res)=>{
-  let name = req.user.displayName
-
-  const SECRET = process.env.USER_SECRET
-  const token = generateToken(req.user, SECRET);
-    res.status(200).json({
-      success: true,
-      name: req.user,
-      token: token
-    })
-})
-
-app.get('/auth/failed', (req, res)=>{
-  res.status(401).send("google authentication failed")
-})
-
-
 
 
 
@@ -98,7 +49,7 @@ app.use("/test", testRoute)
 app.use("/user", user)
 app.use("/profile", profile)
 app.use("/event", event)
-// app.use(googleAuth)
+app.use("/auth",googleAuth)
 
 
 app.use(csrf)

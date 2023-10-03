@@ -3,8 +3,24 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
 import * as dotenv from "dotenv";
 dotenv.config();
 import userModel from '../models/userModel.js';
+import session from 'express-session';
 
-passport.use(new GoogleStrategy({
+
+const initializePassport = (app) => {
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: true
+    })
+  );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+
+
+  passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: process.env.BASE_URL+'/auth/google/callback'
@@ -13,6 +29,7 @@ passport.use(new GoogleStrategy({
     // Handle user data and pass it to the 'done' callback
     // Typically, you would save user data to your database here
     try {
+      
       let User = await userModel.findOne({ googleId: profile.id });
   
       // If user already exists, return the user
@@ -48,4 +65,9 @@ passport.deserializeUser((user, done) => {
     done(null, user)
 })
 
-export default passport;
+
+}
+
+
+
+export default initializePassport;

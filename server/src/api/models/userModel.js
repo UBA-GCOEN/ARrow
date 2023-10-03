@@ -9,7 +9,7 @@ const userModel = mongoose.Schema({
      collegeEmail: { type: String },
      email: { type: String, required: true },
      password: { type: String },
-     role: { type: String, default: 'faculty'},
+     role: { type: String },
      branch: { type: String },
      subjects: { type: String },
      designation: { type: String },
