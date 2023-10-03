@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class Login : MonoBehaviour
 {
-    // private string baseURL = "https://arrowserver.vercel.app";
-    private string baseURL = "http://localhost:5000"; // To run server locally.
+    private string baseURL = "https://arrowserver.vercel.app";
+    // private string baseURL = "http://localhost:5000"; // To run server locally.
     [SerializeField] private string apiEndpoint;
     [SerializeField] private TMP_InputField email;
     [SerializeField] private TMP_InputField password;
@@ -19,12 +19,14 @@ public class Login : MonoBehaviour
     public GameObject loader;
     public void onLoginButtonClick()
     {
+        serverMsg.text = "";
         loader.SetActive(true);
         StartCoroutine(TryLogin());
     }
 
     public void onRegisterButtonClick()
     {
+        serverMsg.text = "";
         loader.SetActive(true);
         StartCoroutine(TryRegister());
     }
@@ -59,19 +61,27 @@ public class Login : MonoBehaviour
         {
             loader.SetActive(false);
             SigninResponse response = JsonUtility.FromJson<SigninResponse>(request.downloadHandler.text);
-            Debug.LogError(response.success);
-            Debug.LogError(response.result);
-            Debug.LogError(response.token);
-            Debug.LogError(response.msg);
+
+            Debug.Log(request.downloadHandler.text);
 
             if (response.success)
             {
-                PlayerPrefs.SetString("Token", response.token);
-                PlayerPrefs.SetString("UserData", JsonUtility.ToJson(response.result));
 
-                Debug.Log(response.token);
-                Debug.Log(JsonUtility.ToJson(response.result));
-                SceneManager.LoadScene("Home");
+                PlayerPrefs.SetString("Token", response.token);
+                
+                PlayerPrefs.SetString("UserData", JsonUtility.ToJson(response.result));  
+
+                UserData user = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString("UserData"));
+
+                Debug.Log(user.isOnboarded); 
+                if (user.isOnboarded == true)
+                {
+                    SceneManager.LoadScene("Home");
+                }
+                else
+                {
+                    SceneManager.LoadScene("[Ob]Start");
+                }
             }
             else
             {
@@ -95,11 +105,10 @@ public class Login : MonoBehaviour
         string registerEndpoint = baseURL + apiEndpoint;
         string email = this.email.text;
         string password = this.password.text;
-        string name = "Sidd";
         string confirmPassword = this.confirmPassword.text;
 
         WWWForm form = new WWWForm();
-        form.AddField("name", name);
+
         form.AddField("email", email);
         form.AddField("password", password);
         form.AddField("confirmPassword", confirmPassword);
@@ -123,10 +132,21 @@ public class Login : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             loader.SetActive(false);
-            SignupResponse response = JsonUtility.FromJson<SignupResponse>(request.downloadHandler.text);
+            SigninResponse response = JsonUtility.FromJson<SigninResponse>(request.downloadHandler.text);
+
+            Debug.Log(request.downloadHandler.text);
 
             if (response.success)
             {
+                PlayerPrefs.SetString("Token", response.token);
+                UserData userData = new UserData
+                {
+                    email = email,
+                    isOnboarded = false
+                };
+
+                PlayerPrefs.SetString("UserData", JsonUtility.ToJson(userData));
+
                 SceneManager.LoadScene("[Ob]Start");
             }
             else
@@ -140,7 +160,7 @@ public class Login : MonoBehaviour
         else
         {
             loader.SetActive(false);
-            SignupResponse response = JsonUtility.FromJson<SignupResponse>(request.downloadHandler.text);
+            SigninResponse response = JsonUtility.FromJson<SigninResponse>(request.downloadHandler.text);
             serverMsg.text = response.msg;
             Debug.LogError("Error: " + request);
             Debug.LogError("Response: " + request.downloadHandler.text);
