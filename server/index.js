@@ -6,7 +6,7 @@ import cors from "cors";
 import csrf from 'csurf';
 import * as dotenv from "dotenv";
 dotenv.config();
-
+import initializePassport from './src/api/middlewares/passportConfig.js'
 
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URI = process.env.MONGODB_URI;
@@ -17,12 +17,18 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+
+initializePassport(app)
+
+
+
 import indexRoute from "./src/api/routes/index.js";
 import testRoute from "./src/api/routes/test.js";
 import user from "./src/api/routes/user.js";
 import profile from "./src/api/routes/profile.js";
 import event from "./src/api/routes/events.js";
-import userAdmin from "./src/api/routes/userAdmin.js";
+import googleAuth from "./src/api/routes/googleAuth.js"
+
 
 
 //rate limiter
@@ -43,8 +49,8 @@ app.use("/test", testRoute)
 app.use("/user", user)
 app.use("/profile", profile)
 app.use("/event", event)
+app.use("/auth",googleAuth)
 
-app.use("/userAdmin", userAdmin)
 
 app.use(csrf)
 

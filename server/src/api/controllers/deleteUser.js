@@ -1,8 +1,4 @@
-import userAdminModel from "../models/userAdminModel.js"
-import userStudentModel from "../models/userStudentModel.js"
-import userStaffModel from "../models/userStaffModel.js"
-import userFacultyModel from "../models/userFacultyModel.js"
-import userVisitorModel from "../models/userVisitorModel.js"
+import userModel from "../models/userModel.js"
 import bcrypt from 'bcrypt'
 
 
