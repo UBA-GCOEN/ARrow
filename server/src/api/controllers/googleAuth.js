@@ -8,7 +8,7 @@ import generateToken from "../middlewares/generateToken.js";
  * Route: /auth/google
  * Desc:  Open google consent screen
  */
-export const authGoogle = passport.authenticate('google', { scope: [ 'email', 'profile' ]})
+export const authGoogle =  await passport.authenticate('google', { scope: [ 'email', 'profile' ]})
 
 
 
@@ -16,7 +16,7 @@ export const authGoogle = passport.authenticate('google', { scope: [ 'email', 'p
  * Route: /auth/google/callback
  * Desc: handle callback from google
  */
-export const callbackGoogle = passport.authenticate('google', { successRedirect: '/auth/protected', failureRedirect: '/auth/failed' })
+export const callbackGoogle = await passport.authenticate('google', { successRedirect: '/auth/protected', failureRedirect: '/auth/failed' })
 
 
 
@@ -36,7 +36,7 @@ export const  authenticated = (req, res)=>{
       user: req.user
     }
 
-    res.status(200).json({
+    res.status(220).json({
       success: true,
       user: req.user,
       token: token

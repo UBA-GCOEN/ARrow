@@ -104,6 +104,16 @@ export const signup = async (req, res, next) => {
     
              if(result){
 
+              //send email as registration
+              const options = {
+                email: email,
+                subject: "Registered to ARrow",
+                body: "Hey User! \n You are successfully registered on ARrow. \n Please complete the onboarding process on the app."
+              }
+        
+             await sendEmail(options);
+
+
               const oldUser = await userModel.findOne({email})
 
               const SECRET = process.env.USER_SECRET

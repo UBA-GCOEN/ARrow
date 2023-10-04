@@ -44,7 +44,7 @@ const initializePassport = (app) => {
         email: profile.emails[0].value,
      });
      if(result){
-      console.log("user created"+ result)
+      console.log("user created")
      }
 
      let newUser = await userModel.findOne({ googleId: profile.id })
