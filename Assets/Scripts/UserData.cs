@@ -2,6 +2,7 @@
 public class UserData
 {
     public string _id;
+    public string googleId;
     public string name;
     public string password;
     public string collegeEmail;

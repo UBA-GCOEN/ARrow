@@ -42,6 +42,7 @@ const initializePassport = (app) => {
         googleId: profile.id,
         name: profile.displayName,
         email: profile.emails[0].value,
+        isOnboarded: false,
      });
      if(result){
       console.log("user created"+ result)
