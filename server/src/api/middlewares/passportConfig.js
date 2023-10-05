@@ -28,6 +28,7 @@ const initializePassport = (app) => {
   async (accessToken, refreshToken, profile, done) => {
     // Handle user data and pass it to the 'done' callback
     // Typically, you would save user data to your database here
+    console.log("callback called")
     try {
       
       let User = await userModel.findOne({ googleId: profile.id });
