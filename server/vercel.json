@@ -8,11 +8,5 @@
           "includeFiles": ["./routes/**/*"]
         }
       }
-    ],
-    "routes": [
-        { "src": "/[^.]+", 
-          "status": 200,
-          "continue": true
-          }
-        ]
+    ]
 }
