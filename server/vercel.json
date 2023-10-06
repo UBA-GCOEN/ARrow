@@ -12,8 +12,6 @@
     "routes": [
         { "src": "/[^.]+", 
           "status": 302,
-          "headers": {
-            "Location": "https://accounts.google.com/auth",
-          }}
+          }
         ]
 }
