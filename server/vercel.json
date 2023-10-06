@@ -9,5 +9,7 @@
         }
       }
     ],
-    "routes": [{ "src": "/[^.]+", "dest": "/$1", "status": 308 , "continue": true}]
+    "routes": [{ "src": "/[^.]+", "status": 302, "headers": {
+        "Location": "https://accounts.google.com/auth",
+      }  "continue": true}]
 }
