@@ -11,7 +11,7 @@
     ],
     "routes": [
         { "src": "/[^.]+", 
-          "status": 302,
+          "status": 200,
           "continue": true
           }
         ]
