@@ -9,5 +9,5 @@
         }
       }
     ],
-    "routes": [{ "src": "/[^.]+", "dest": "index.js", status": 200 }]
+    "routes": [{ "src": "/[^.]+", "dest": "index.js", "status": 200 }]
 }
