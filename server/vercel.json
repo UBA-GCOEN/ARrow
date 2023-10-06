@@ -9,5 +9,5 @@
         }
       }
     ],
-    "routes": [{ "src": "/[^.]+",  "status": 200 }]
+    "routes": [{ "src": "/[^.]+", "dest": "/$1", "status": 200 }]
 }
