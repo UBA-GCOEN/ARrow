@@ -11,12 +11,12 @@ import generateToken from "../middlewares/generateToken.js";
 export const authGoogle = passport.authenticate('google', { scope: [ 'email', 'profile' ]})
 
 
-
 /**
  * Route: /auth/google/callback
  * Desc: handle callback from google
  */
 export const callbackGoogle = passport.authenticate('google', { successRedirect: '/auth/protected', failureRedirect: '/auth/failed' })
+
 
 
 
