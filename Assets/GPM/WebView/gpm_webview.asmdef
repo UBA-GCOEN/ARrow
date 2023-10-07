@@ -1,0 +1,15 @@
+{
+    "name": "gpm_webview",
+    "references": [
+        "gpm_common",
+        "gpm_communicator"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

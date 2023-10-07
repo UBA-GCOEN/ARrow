@@ -5,23 +5,90 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638317644318438218
-    m_Hash: 3702542564
+      ticks: 638318918951457365
+    m_Hash: 950094356
   m_LockFileStatus:
     m_FilePath: C:/Users/shimp/OneDrive/Desktop/ARrow/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638317644318535501
-    m_Hash: 599495608
+      ticks: 638318918951529361
+    m_Hash: 537325709
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
-  m_LocalFileStatus: []
+  m_LocalFileStatus:
+  - m_FilePath: C:\Users\shimp\Downloads\PlayerPrefsEditor-1.4.1\PlayerPrefsEditor-1.4.1/package.json
+    m_PathExists: 1
+    m_ContentTrackingEnabled: 1
+    m_ModificationDate:
+      serializedVersion: 2
+      ticks: 638318916884252172
+    m_Hash: 2632301474
+  - m_FilePath: C:\Users\shimp\Downloads\PlayerPrefsEditor-1.4.1\PlayerPrefsEditor-1.4.1
+    m_PathExists: 1
+    m_ContentTrackingEnabled: 1
+    m_ModificationDate:
+      serializedVersion: 2
+      ticks: 0
+    m_Hash: 0
 m_ProjectPath: C:/Users/shimp/OneDrive/Desktop/ARrow/Packages
 m_EditorVersion: 2022.3.4f1 (35713cd46cd7)
 m_ResolvedPackages:
+- packageId: com.sabresaurus.playerprefseditor@file:C:\Users\shimp\Downloads\PlayerPrefsEditor-1.4.1\PlayerPrefsEditor-1.4.1
+  testable: 0
+  isDirectDependency: 1
+  version: 1.4.1
+  source: 4
+  resolvedPath: C:\Users\shimp\Downloads\PlayerPrefsEditor-1.4.1\PlayerPrefsEditor-1.4.1
+  assetPath: Packages/com.sabresaurus.playerprefseditor
+  name: com.sabresaurus.playerprefseditor
+  displayName: PlayerPrefs Editor & Utilities
+  author:
+    name: sabresaurus
+    email: 
+    url: https://sabresaurus.com/docs/playerprefs-editor-utilities-documentation/
+  category: 
+  type: 
+  description: PlayerPrefs Editor & Utilities provide an easy way to see what PlayerPrefs
+    your game is using and change them at run-time.
+  status: 0
+  errors: []
+  versions:
+    all: []
+    compatible: []
+    recommended: 
+    deprecated: []
+  dependencies: []
+  resolvedDependencies: []
+  keywords: []
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 0
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+  isDeprecated: 0
+  deprecationMessage: 
 - packageId: com.unity.2d.sprite@1.0.0
   testable: 0
   isDirectDependency: 1
