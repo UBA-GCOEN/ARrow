@@ -1,7 +1,8 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 
 const notificationModel = new mongoose.Schema({
+    _id: { type: Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId(), required:true },
     title: { type: String, required: true },
     message: { type:String, required:true },
     senderEmail: { type:String, required:true },
