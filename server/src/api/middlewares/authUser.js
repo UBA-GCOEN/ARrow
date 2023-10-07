@@ -8,7 +8,7 @@ const authUser = (req, res, next) => {
         let decodedData 
         if(token && isCustomAuth){
           let SECRET = ''
-          if(req.session.user ){
+          if(req.session.user){
            SECRET = process.env.USER_SECRET
           }
           else{
