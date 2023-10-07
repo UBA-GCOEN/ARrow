@@ -4,16 +4,12 @@ const authUser = (req, res, next) => {
     
     try {
         const token = req.headers.authorization.split(" ")[1]
+
         const isCustomAuth = token.length < 500
         let decodedData 
+
         if(token && isCustomAuth){
-          let SECRET = ''
-          if(req.session.user ){
-           SECRET = process.env.USER_SECRET
-          }
-          else{
-            res.json({msg: "Not authorized - login first"})
-          }
+          const SECRET = process.env.USER_SECRET;
   
           decodedData = jwt.verify(token, SECRET)  
           req.email = decodedData?.email    

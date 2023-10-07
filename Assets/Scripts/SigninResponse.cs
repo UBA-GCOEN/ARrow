@@ -2,8 +2,9 @@
 public class SigninResponse
 {
     public bool success;
-    public string result;
+    public UserData result;
     public string token;
-    // public string csrfToken;
+
+    public bool isOnboarded;
     public string msg;
 }

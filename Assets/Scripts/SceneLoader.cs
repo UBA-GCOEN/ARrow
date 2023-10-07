@@ -7,7 +7,7 @@ using TMPro;
 public class SceneLoader : MonoBehaviour
 {
     public string backScene;
-    
+
     void Update()
     {
         // Check for the Android back button press
