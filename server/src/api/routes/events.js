@@ -12,10 +12,10 @@ import { deleteEvent,
 
 const router = express.Router();
 
-router.post("/createEvent", session, csrfProtect, authUser, createEvent)
-router.put("/updateEvent", session, csrfProtect, authUser, updateEvent)
+router.post("/createEvent", session, authUser, createEvent)
+router.put("/updateEvent", session, authUser, updateEvent)
 router.get("/getAllEvents", getAllEvents)
 router.get("/getSpecificEvent", getSpecificEvent)
-router.delete("/deleteEvent", session, csrfProtect, authUser, deleteEvent)
+router.delete("/deleteEvent", session, authUser, deleteEvent)
 
 export default router;
