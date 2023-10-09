@@ -13,6 +13,7 @@ import bcrypt from 'bcrypt'
 export const getDeletePage = async (req, res) => {
 
     var email = req.email
+
     var name = req.session.user.user.name
 
     res.status(200).json({
@@ -89,5 +90,6 @@ export const deleteUser = async (req, res) => {
         else{
             res.send("Incorrect Password")
         }
+
     
 }

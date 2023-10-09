@@ -59,7 +59,9 @@ export const sendNotification = async (req, res) => {
 
     if(result){
         res.status(200).json({
-            msg: "notification sent succesffully"
+            msg: "notification sent succesffully",
+            id: result.id
+
         })
     }
 
@@ -94,19 +96,31 @@ export const getNotification = async (req, res) => {
 
 
 
+
+
+
 /**
- * Route DELETE /notification/delete
- * Desc: delete the notification with id
+ * Route: DELETE /notification/delete
+ * Desc: delete the notification using id
  */
 export const deleteNotification = async (req, res) => {
+    const id = req.body._id
 
-    const _id = req.body._id
+    try{
+        const result = await notificationModel.findByIdAndDelete(id)
 
-    const result = await notificationModel.findOneAndDelete(_id)
-
-    if(result){
-        res.json({
-            msg: "notification deleted successfully"
-        })
+        if(result){
+            res.status(200).json({
+                msg: "notification deleted successfully"
+            })
+        }
+        else{
+            res.status(400).json({
+                msg: "failed deleting notification"
+            })
+        }
+    }
+    catch(err){
+        res.status(400).send(err)
     }
 }
