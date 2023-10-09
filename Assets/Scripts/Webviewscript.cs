@@ -12,19 +12,13 @@ public class Webviewscript : MonoBehaviour
 {
     public void ShowUrlPopupPositionSize()
     {
-        GpmWebViewSafeBrowsing.ShowSafeBrowsing("https://arrowserver.vercel.app/",
+        GpmWebViewSafeBrowsing.ShowSafeBrowsing("https://arrowserver.vercel.app/auth/google",
                 new GpmWebViewRequest.ConfigurationSafeBrowsing()
                 {
                     navigationBarColor = "#000000",
                     navigationTextColor = "#FFFFFF"
                 },
                 OnCallback);
-
-        // GpmWebViewCallback.CallbackType.PageLoad;
-        //     if (string.IsNullOrEmpty(data) == false)
-        //     {
-        //         Debug.LogFormat("Loaded Page:{0}", data);
-        //     }
     }
 
     private void OnCallback(
@@ -57,9 +51,11 @@ public class Webviewscript : MonoBehaviour
                 if (string.IsNullOrEmpty(data) == false)
                 {
                     Debug.LogFormat("Loaded Page:{0}", data);
-                    string username = PlayerPrefs.GetString("name");
-                    username = data;
-                    PlayerPrefs.SetString("name", username);
+
+                    if (data == "https://arrowserver.vercel.app/auth/protected")
+                    {
+                        StartCoroutine(FetchJsonData(data));
+                    }
                 }
                 break;
             case GpmWebViewCallback.CallbackType.MultiWindowOpen:
@@ -95,6 +91,38 @@ public class Webviewscript : MonoBehaviour
             Debug.Log("BackButtonClose");
             break;
 #endif
+        }
+    }
+
+    IEnumerator FetchJsonData(string url)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(url);
+        yield return request.SendWebRequest();
+
+        if (request.isNetworkError || request.isHttpError)
+        {
+            Debug.Log("Error while fetching data");
+        }
+        else
+        {
+            SigninResponse response = JsonUtility.FromJson<SigninResponse>(request.downloadHandler.text);
+
+            PlayerPrefs.SetString("Token", response.token);
+
+            Debug.Log(response.result);
+            PlayerPrefs.SetString("UserData", JsonUtility.ToJson(response.result));
+
+            UserData user = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString("UserData"));
+
+            Debug.Log(user.isOnboarded);
+            if (user.isOnboarded == true)
+            {
+                SceneManager.LoadScene("Home");
+            }
+            else
+            {
+                SceneManager.LoadScene("[Ob]Start");
+            }
         }
     }
 }

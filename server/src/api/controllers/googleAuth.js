@@ -38,7 +38,7 @@ export const  authenticated = (req, res)=>{
 
     res.status(200).json({
       success: true,
-      user: req.user,
+      result: req.user,
       token: token
     })
 }
