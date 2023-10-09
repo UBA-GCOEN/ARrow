@@ -1,6 +1,7 @@
 import userModel from "../models/userModel.js"
 import bcrypt from 'bcrypt'
 import generateToken from "../middlewares/generateToken.js"
+import sendWelcomeMail from "../services/sendEmail.js";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -105,8 +106,6 @@ export const signup = async (req, res, next) => {
               const oldUser = await userModel.findOne({email})
 
               const SECRET = process.env.USER_SECRET
-
-              console.log(oldUser);
               
               const token = generateToken(oldUser, SECRET);
 
@@ -114,6 +113,9 @@ export const signup = async (req, res, next) => {
                 token: token,
                 user: oldUser
               }
+
+              //send welcome email
+              sendWelcomeMail(email)
     
               res.status(200).json({
                 success: true,
@@ -166,7 +168,7 @@ export const signin = async (req, res) => {
           res.status(200).json({
             success: true,
             token,
-            result: oldUser,
+            _id: oldUser._id,
             isOnboarded: oldUser.isOnboarded,
             msg: "User is logged in successfully"
           });

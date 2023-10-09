@@ -23,7 +23,7 @@ const initializePassport = (app) => {
   passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: process.env.BASE_URL+'/auth/google/callback'
+    callbackURL: 'https://arrowserver.vercel.app/auth/google/callback'
   },
   async (accessToken, refreshToken, profile, done) => {
     // Handle user data and pass it to the 'done' callback

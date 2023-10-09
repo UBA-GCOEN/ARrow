@@ -8,5 +8,6 @@ import authUser from '../middlewares/authUser.js'
 const router = express.Router();
 
 router.get("/", profile)
-router.post("/update", authUser, updateProfile)
+router.post("/update", session, authUser, updateProfile)
+
 export default router;

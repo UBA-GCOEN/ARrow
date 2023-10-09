@@ -1,5 +1,0 @@
-{
-	"displayName":"Example XR Input Pose Providers - Requires Legacy Input Helpers 2.1.2",
-	"description": "Example code showing how to implement custom pose providers for MagicLeap using XR Input",
-	"createSeparatePackage": false
-}

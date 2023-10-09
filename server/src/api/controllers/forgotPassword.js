@@ -15,7 +15,6 @@ dotenv.config();
 export const sendResetEmail = async ( req, res) => {
 
       const email = req.body.email;
-      const role = req.body.role;
 
       /**
        * validate inputs for 
@@ -24,10 +23,6 @@ export const sendResetEmail = async ( req, res) => {
       if(typeof email !== 'string'){
         console.log("invalid email")
         return 
-      }
-      if(typeof role !== 'string'){
-        console.log("invalid role")
-        return
       }
 
    try{
@@ -40,27 +35,10 @@ export const sendResetEmail = async ( req, res) => {
        */
       var emailFound = ''
       var SECRET = ''
-      
-      if(role == 'student'){
-        emailFound = await userStudentModel.findOne({email});
 
-      }
-      else if(role == 'admin'){
-        emailFound = await userAdminModel.findOne({email});
-      }
-      else if(role == 'staff'){
-        emailFound = await userStaffModel.findOne({email});
-      }
-      else if(role == 'faculty'){
-        emailFound = await userFacultyModel.findOne({email});
-      }
-      else if(role == 'visitor'){
-        emailFound = await userVisitorModel.findOne({email});
-      }
-      else{
-        res.send("invalid role")
-      }
-      console.log(emailFound.role)
+      emailFound = await userModel.findOne({email});
+
+
 
 
       /**
@@ -68,21 +46,7 @@ export const sendResetEmail = async ( req, res) => {
        * based on role
        */
       if(emailFound){
-        if(emailFound.role == 'admin'){
-            SECRET = process.env.ADMIN_SECRET
-        }
-        else if(emailFound.role == 'student'){
-            SECRET = process.env.STUDENT_SECRET
-        }
-        else if(emailFound.role == 'faculty'){
-            SECRET = process.env.FACULTY_SECRET
-        }
-        else if(emailFound.role == 'staff'){
-            SECRET = process.env.STAFF_SECRET
-        }
-        else if(emailFound.role == 'visitor'){
-            SECRET = process.env.VISITOR_SECRET
-        }
+        SECRET = process.env.USER_SECRET
       }
       else{
         res.send("no account found with the specified email")
@@ -107,6 +71,8 @@ export const sendResetEmail = async ( req, res) => {
 } 
 
 
+
+
 /**
  * Route: /verifyEmail
  * Desc: verify email with token
@@ -114,30 +80,39 @@ export const sendResetEmail = async ( req, res) => {
 export const verifyEmail = async ( req, res) => {
 
     const token = req.query.token
-    const role = req.query.role
 
     try{
 
     var decodeduser = ''
+       
+        decodeduser = await jwt.verify(token, process.env.USER_SECRET)
 
-        if(role == 'admin'){
-            decodeduser = await jwt.verify(token,process.env.ADMIN_SECRET)
-        }
-        else if(role == 'student'){
-            decodeduser = await jwt.verify(token, process.env.STUDENT_SECRET)
-        }
-        else if(role == 'faculty'){
-            decodeduser = await jwt.verify(token, process.env.FACULTY_SECRET)
-        }
-        else if(role == 'staff'){
-            decodeduser = await jwt.verify(token, process.env.STAFF_SECRET)
-        }
-        else if(role == 'visitor'){
-            decodeduser = await jwt.verify(token, process.env.VISITOR_SECRET)
-        }
+        if(decodeduser){
 
-        if(decodeduser.role){
-            res.json({role: decodeduser.role})
+          const SECRET = process.env.USER_SECRET
+
+          const oldUser = await userModel.findOne({email:decodeduser.email})
+
+          const token = generateToken(oldUser, SECRET);
+
+
+          req.session.user = {
+            token: token,
+            user: oldUser
+          }
+
+          console.log(req.session)
+
+          res.status(200).json({
+            success: true,
+            msg: "user is logged in now make a post request to /updatePassword",
+            result: oldUser,
+            token,
+            // csrfToken: req.csrfToken,
+          });
+        }
+        else{
+          res.status(404).send("User not found")
         }
 
     }
@@ -155,7 +130,6 @@ export const verifyEmail = async ( req, res) => {
 export const updatePassword = async (req, res) => {
 
 
-    const role = req.body.role
     const password = req.body.password
     const confirmPassword = req.body.confirmPassword
 
@@ -180,39 +154,27 @@ export const updatePassword = async (req, res) => {
     
     try{  
 
-        // hash password with bcrypt
-        const hashedPassword = await bcrypt.hash(password, 12)      
-        var result = '' 
+        if(req.email){
+            // hash password with bcrypt
+            const hashedPassword = await bcrypt.hash(password, 12)      
+            var result = '' 
 
-        if(role == 'admin'){
-          result = await userAdminModel.updateOne({
-                password: hashedPassword
-            })
+
+            result = await userModel.updateOne({
+                  password: hashedPassword
+              })
+            
+
+            if(result){
+                res.send("password changed successfully")
+            }
         }
-        else if(role == 'student'){
-          result = await userStudentModel.updateOne({
-                password: hashedPassword
-            })
-        }
-        else if(role == 'faculty'){
-            result = await userFacultyModel.updateOne({
-                password: hashedPassword
-            })
-        }
-        else if(role == 'staff'){
-            result = await userStaffModel.updateOne({
-                password: hashedPassword
-            })
-        }
-        else if(role == 'visitor'){
-            result = await userVisitorModel.updateOne({
-                password: hashedPassword
-            })
+        else{
+          res.status(400).json({
+            msg: "unauthorized request"
+          })
         }
 
-        if(result){
-            res.send("password changed successfully")
-        }
 
    }
    catch(err){
