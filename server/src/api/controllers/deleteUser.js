@@ -5,13 +5,15 @@ import bcrypt from 'bcrypt'
 
 
 /**
- * Route: /getDeletePage
+ * Route: GET /getDeletePage
  * Desc: get the details of 
  *       current user before 
  *       deleting the user
  */
 export const getDeletePage = async (req, res) => {
-    var email = req.session.user.user.email
+
+    var email = req.email
+
     var name = req.session.user.user.name
 
     res.status(200).json({
@@ -25,7 +27,7 @@ export const getDeletePage = async (req, res) => {
 
 
 /**
- * Route: /deleteUser
+ * Route: DELETE /deleteUser
  * Desc: Delete the current 
  *       logged in user
  */
@@ -76,9 +78,8 @@ export const deleteUser = async (req, res) => {
             return;
         }
       
-      
 
-                
+        // delete user       
         var oldUser = await userModel.findOne({email})
         var isPasswordCorrect = bcrypt.compare(password, oldUser.password)
         
@@ -89,7 +90,6 @@ export const deleteUser = async (req, res) => {
         else{
             res.send("Incorrect Password")
         }
-
 
     
 }

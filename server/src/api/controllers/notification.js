@@ -61,6 +61,7 @@ export const sendNotification = async (req, res) => {
         res.status(200).json({
             msg: "notification sent succesffully",
             id: result.id
+
         })
     }
 
@@ -78,8 +79,8 @@ export const getNotification = async (req, res) => {
     const email = req.email
 
     const oldUser = await userModel.findOne({email})
-    const role = oldUser.role
 
+    const role = oldUser.role
 
     const notifications = await notificationModel.find({
         receiverRoles: { $in: [role] }
@@ -91,8 +92,8 @@ export const getNotification = async (req, res) => {
             notifn: notifications
         })
     }
-
 }
+
 
 
 
@@ -122,6 +123,4 @@ export const deleteNotification = async (req, res) => {
     catch(err){
         res.status(400).send(err)
     }
-    
-
 }

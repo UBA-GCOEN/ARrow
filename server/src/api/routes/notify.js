@@ -5,7 +5,6 @@ import authUser from '../middlewares/authUser.js'
 
 import { deleteNotification, getNotification, sendNotification } from '../controllers/notification.js';
 
-
 const router = express.Router();
 
 router.post("/send", session, authUser, sendNotification)

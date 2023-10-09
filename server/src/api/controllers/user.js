@@ -168,7 +168,7 @@ export const signin = async (req, res) => {
           res.status(200).json({
             success: true,
             token,
-            result: oldUser,
+            _id: oldUser._id,
             isOnboarded: oldUser.isOnboarded,
             msg: "User is logged in successfully"
           });

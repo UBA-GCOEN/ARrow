@@ -1,5 +1,5 @@
 import eventModel from '../models/eventModel.js'
-
+import userModel from '../models/userModel.js'
 
 /**
  * Route: /event/createEvent
