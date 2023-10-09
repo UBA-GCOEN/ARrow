@@ -28,7 +28,7 @@ import user from "./src/api/routes/user.js";
 import profile from "./src/api/routes/profile.js";
 import event from "./src/api/routes/events.js";
 import googleAuth from "./src/api/routes/googleAuth.js"
-
+import notification from "./src/api/routes/notify.js"
 
 
 //rate limiter
@@ -49,8 +49,8 @@ app.use("/test", testRoute)
 app.use("/user", user)
 app.use("/profile", profile)
 app.use("/event", event)
-app.use("/auth",googleAuth)
-
+app.use("/auth", googleAuth)
+app.use("/notification", notification)
 
 app.use(csrf)
 
