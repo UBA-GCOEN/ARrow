@@ -59,7 +59,8 @@ export const sendNotification = async (req, res) => {
 
     if(result){
         res.status(200).json({
-            msg: "notification sent succesffully"
+            msg: "notification sent succesffully",
+            id: result.id
         })
     }
 
@@ -74,7 +75,11 @@ export const sendNotification = async (req, res) => {
  */
 export const getNotification = async (req, res) => {
 
-    const role = req.role
+    const email = req.email
+
+    const oldUser = await userModel.findOne({email})
+    const role = oldUser.role
+
 
     const notifications = await notificationModel.find({
         receiverRoles: { $in: [role] }
@@ -86,4 +91,37 @@ export const getNotification = async (req, res) => {
             notifn: notifications
         })
     }
+
+}
+
+
+
+
+
+/**
+ * Route: DELETE /notification/delete
+ * Desc: delete the notification using id
+ */
+export const deleteNotification = async (req, res) => {
+    const id = req.body._id
+
+    try{
+        const result = await notificationModel.findByIdAndDelete(id)
+
+        if(result){
+            res.status(200).json({
+                msg: "notification deleted successfully"
+            })
+        }
+        else{
+            res.status(400).json({
+                msg: "failed deleting notification"
+            })
+        }
+    }
+    catch(err){
+        res.status(400).send(err)
+    }
+    
+
 }
