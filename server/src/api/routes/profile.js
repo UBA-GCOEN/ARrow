@@ -9,4 +9,5 @@ const router = express.Router();
 
 router.get("/", profile)
 router.post("/update", session, authUser, updateProfile)
+
 export default router;

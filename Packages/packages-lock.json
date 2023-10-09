@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.sabresaurus.playerprefseditor": {
+      "version": "file:C:/Users/shimp/Downloads/PlayerPrefsEditor-1.4.1/PlayerPrefsEditor-1.4.1",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

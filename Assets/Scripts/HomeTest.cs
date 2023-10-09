@@ -9,10 +9,10 @@ public class HomeScript : MonoBehaviour
     void Start()
     {
         // Retrieve user data from PlayerPrefs
-        string userName = PlayerPrefs.GetString("UserName", "Guest"); // "Guest" is the default if no user data is found
+        UserData user = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString("UserData"));// "Guest" is the default if no user data is found
 
         // Update the UI with the user's name
-        welcomeText.text = "Welcome, " + userName + "!";
+        welcomeText.text = "Welcome, " + user.name + "!";
 
         // You can also use the token for any authenticated requests if needed
     }

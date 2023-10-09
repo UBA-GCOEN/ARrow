@@ -45,8 +45,6 @@ export const signup = async (req, res, next) => {
         "@gcoen.ac.in",
        ];
 
-
-
        // check email format
        if (!emailDomains.some((v) => email.indexOf(v) >= 0)) {
          return res.status(404).json({
@@ -97,7 +95,7 @@ export const signup = async (req, res, next) => {
            const hashedPassword = await bcrypt.hash(password, 12)
            
            // create user in database
-            const result = userModel.create({
+            const result = await userModel.create({
                 email,
                 password: hashedPassword,
              });
@@ -107,6 +105,8 @@ export const signup = async (req, res, next) => {
               const oldUser = await userModel.findOne({email})
 
               const SECRET = process.env.USER_SECRET
+
+              console.log(oldUser);
               
               const token = generateToken(oldUser, SECRET);
 
@@ -117,9 +117,7 @@ export const signup = async (req, res, next) => {
     
               res.status(200).json({
                 success: true,
-                result: oldUser,
                 token,
-                // csrfToken: req.csrfToken,
                 msg: "User added and logged in successfully"
               });
              }
@@ -164,7 +162,7 @@ export const signin = async (req, res) => {
             token: token,
             user: oldUser
           }
-
+          
           res.status(200).json({
             success: true,
             token,
@@ -172,6 +170,7 @@ export const signin = async (req, res) => {
             isOnboarded: oldUser.isOnboarded,
             msg: "User is logged in successfully"
           });
+
 
         }
         else{
