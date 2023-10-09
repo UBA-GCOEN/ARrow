@@ -9,9 +9,8 @@ import userModel from "../models/userModel.js"
  * Desc: change the password
  */
 export const changePassword = async (req, res) => {
-    const role = req.role
 
-    const email = req.session.user.user.email
+    const email = req.email
 
     const oldPassword = req.body.oldPassword
     const newPassword = req.body.newPassword
@@ -30,26 +29,8 @@ export const changePassword = async (req, res) => {
     try {
 
 
-        //geting userschema based on role
-        if(role == 'admin'){
-            oldUser = await userAdminModel.findOne({email})
-        }
-        else if(role == 'student'){
-            oldUser = await userStudentModel.findOne({email})
-        }
-        else if(role == 'faculty'){
-            oldUser = await userFacultyModel.findOne({email})
-        }
-        else if(role == 'staff'){
-            oldUser = await userStaffModel.findOne({email})
-        }
-        else if(role == 'visitor'){
-            oldUser = await userVisitorModel.findOne({email})
-        }
-        else{
-            res.send("invalid role")
-            return
-        }
+        oldUser = await userModel.findOne({email})
+
 
 
         //hashing and updating new password

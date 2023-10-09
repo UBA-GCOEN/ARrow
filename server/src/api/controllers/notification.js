@@ -80,6 +80,7 @@ export const getNotification = async (req, res) => {
     const oldUser = await userModel.findOne({email})
     const role = oldUser.role
 
+
     const notifications = await notificationModel.find({
         receiverRoles: { $in: [role] }
     })
@@ -90,6 +91,7 @@ export const getNotification = async (req, res) => {
             notifn: notifications
         })
     }
+
 }
 
 
@@ -121,5 +123,5 @@ export const deleteNotification = async (req, res) => {
         res.status(400).send(err)
     }
     
-    
+
 }

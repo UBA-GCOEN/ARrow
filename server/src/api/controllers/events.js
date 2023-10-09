@@ -6,7 +6,7 @@ import eventModel from '../models/eventModel.js'
  * Desc: create event 
  */
 export const createEvent = async (req, res) => {
-    let role = req.role
+    let email = req.email
 
     const { 
         title,
@@ -52,8 +52,17 @@ export const createEvent = async (req, res) => {
         return
     }
 
+    if(typeof email !== 'string' ){
+        res.send("invalid email")
+        return
+    }
 
 
+
+
+    //detrmine current logged in role 
+    const olduser = await userModel.findOne({email})
+    const role = olduser.role
 
     
     // Event creation in database
@@ -111,7 +120,7 @@ export const createEvent = async (req, res) => {
  * Desc: update the event information or status
  */
 export const updateEvent = async (req, res) => {
-    let role = req.role
+    let email = req.email
 
     const { 
         _id,
@@ -163,6 +172,11 @@ export const updateEvent = async (req, res) => {
             return;
         }
 
+
+
+    //detrmine current logged in role 
+    const olduser = await userModel.findOne({email})
+    const role = olduser.role
 
 
     // Event updation in database
@@ -219,7 +233,7 @@ export const updateEvent = async (req, res) => {
  * Desc: delete the event
  */
 export const deleteEvent = async (req, res) =>{
-    let role = req.role
+    let email = req.email
 
     const { 
         _id 
@@ -233,6 +247,13 @@ export const deleteEvent = async (req, res) =>{
     }
 
 
+
+    //detrmine current logged in role 
+    const olduser = await userModel.findOne({email})
+    const role = olduser.role    
+
+
+    
     if(role == 'admin' || role == 'faculty'){
 
         try{

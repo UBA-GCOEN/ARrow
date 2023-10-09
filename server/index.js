@@ -52,7 +52,7 @@ app.use("/event", event)
 app.use("/auth", googleAuth)
 app.use("/notification", notification)
 
-app.use(csrf)
+// app.use(csrf)
 
 
 mongoose
