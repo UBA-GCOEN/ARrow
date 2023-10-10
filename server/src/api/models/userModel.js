@@ -3,6 +3,7 @@ import sanitizerPlugin from 'mongoose-sanitizer'
 
 // User schema
 const userModel = mongoose.Schema({
+     image: { type: Buffer },
      id: { type: String },
      googleId: { type: String },
      name: { type: String },
