@@ -10,6 +10,9 @@ using UnityEngine.SceneManagement;
 
 public class Webviewscript : MonoBehaviour
 {
+
+    public TextMeshProUGUI serverMsg;
+
     public void ShowUrlPopupPositionSize()
     {
         GpmWebViewSafeBrowsing.ShowSafeBrowsing("https://arrowserver.vercel.app/auth/google",
@@ -25,74 +28,84 @@ public class Webviewscript : MonoBehaviour
     GpmWebViewCallback.CallbackType callbackType,
     string data,
     GpmWebViewError error)
+{
+    Debug.Log("OnCallback: " + callbackType);
+    serverMsg.text += "OnCallback: " + callbackType + "\n";
+    switch (callbackType)
     {
-        Debug.Log("OnCallback: " + callbackType);
-        switch (callbackType)
-        {
-            case GpmWebViewCallback.CallbackType.Open:
-                if (error != null)
-                {
-                    Debug.LogFormat("Fail to open WebView. Error:{0}", error);
-                }
-                break;
-            case GpmWebViewCallback.CallbackType.Close:
-                if (error != null)
-                {
-                    Debug.LogFormat("Fail to close WebView. Error:{0}", error);
-                }
-                break;
-            case GpmWebViewCallback.CallbackType.PageStarted:
-                if (string.IsNullOrEmpty(data) == false)
-                {
-                    Debug.LogFormat("PageStarted Url : {0}", data);
-                }
-                break;
-            case GpmWebViewCallback.CallbackType.PageLoad:
-                if (string.IsNullOrEmpty(data) == false)
-                {
-                    Debug.LogFormat("Loaded Page:{0}", data);
+        case GpmWebViewCallback.CallbackType.Open:
+            if (error != null)
+            {
+                Debug.LogFormat("Fail to open WebView. Error:{0}", error);
+                // Handle the error here
+            }
+            break;
+        case GpmWebViewCallback.CallbackType.Close:
+            if (error != null)
+            {
+                Debug.LogFormat("Fail to close WebView. Error:{0}", error);
+                // Handle the error here
+            }
+            else
+            {
+                // Close the browser here
+                GpmWebView.Close();
 
-                    if (data == "https://arrowserver.vercel.app/auth/protected")
-                    {
-                        StartCoroutine(FetchJsonData(data));
-                    }
-                }
-                break;
-            case GpmWebViewCallback.CallbackType.MultiWindowOpen:
-                Debug.Log("MultiWindowOpen");
-                break;
-            case GpmWebViewCallback.CallbackType.MultiWindowClose:
-                Debug.Log("MultiWindowClose");
-                break;
-            case GpmWebViewCallback.CallbackType.Scheme:
-                if (error == null)
+                // Store the data in PlayerPrefs here
+                StartCoroutine(FetchJsonData(data));
+                // PlayerPrefs.SetString("Token", response.token);
+                // PlayerPrefs.SetString("UserData", JsonUtility.ToJson(response.result));
+            }
+            break;
+        case GpmWebViewCallback.CallbackType.PageStarted:
+            if (string.IsNullOrEmpty(data) == false)
+            {
+                Debug.LogFormat("PageStarted Url : {0}", data);
+            }
+            break;
+        case GpmWebViewCallback.CallbackType.PageLoad:
+            if (string.IsNullOrEmpty(data) == false)
+            {
+                Debug.LogFormat("Loaded Page:{0}", data);
+                serverMsg.text += "Loaded Page:{0}" + data + "\n";
+                if (data == "https://arrowserver.vercel.app/auth/protected")
                 {
-                    if (data.Equals("USER_ CUSTOM_SCHEME") == true || data.Contains("CUSTOM_SCHEME") == true)
-                    {
-                        Debug.Log(string.Format("scheme:{0}", data));
-                    }
+                    StartCoroutine(FetchJsonData(data));
+                    GpmWebView.Close();
                 }
-                else
+            }
+            break;
+        case GpmWebViewCallback.CallbackType.MultiWindowOpen:
+            Debug.Log("MultiWindowOpen");
+            break;
+        case GpmWebViewCallback.CallbackType.MultiWindowClose:
+            Debug.Log("MultiWindowClose");
+            break;
+        case GpmWebViewCallback.CallbackType.Scheme:
+            if (error == null)
+            {
+                if (data.Equals("https://arrowserver.vercel.app/auth/protected") == true || data.Contains("https://arrowserver.vercel.app/auth/protected") == true)
                 {
-                    Debug.Log(string.Format("Fail to custom scheme. Error:{0}", error));
+                    serverMsg.text += "scheme:{0}" + data + "\n";
+                    Debug.Log(string.Format("scheme:{0}", data));
+
+                    StartCoroutine(FetchJsonData(data));
+                    GpmWebView.Close();
                 }
-                break;
-            case GpmWebViewCallback.CallbackType.GoBack:
-                Debug.Log("GoBack");
-                break;
-            case GpmWebViewCallback.CallbackType.GoForward:
-                Debug.Log("GoForward");
-                break;
-            case GpmWebViewCallback.CallbackType.ExecuteJavascript:
-                Debug.LogFormat("ExecuteJavascript data : {0}, error : {1}", data, error);
-                break;
+            }
+            else
+            {
+                Debug.Log(string.Format("Fail to custom scheme. Error:{0}", error));
+                // Handle the error here
+            }
+            break;
 #if UNITY_ANDROID
         case GpmWebViewCallback.CallbackType.BackButtonClose:
             Debug.Log("BackButtonClose");
             break;
 #endif
-        }
     }
+}
 
     IEnumerator FetchJsonData(string url)
     {
@@ -110,6 +123,7 @@ public class Webviewscript : MonoBehaviour
             PlayerPrefs.SetString("Token", response.token);
 
             Debug.Log(response.result);
+            serverMsg.text +=  "data" + response.result + "\n";
             PlayerPrefs.SetString("UserData", JsonUtility.ToJson(response.result));
 
             UserData user = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString("UserData"));
