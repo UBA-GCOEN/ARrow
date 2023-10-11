@@ -53,6 +53,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Admin.unity
     guid: a668140102895f149b6270ffd613e3f8
+  - enabled: 1
+    path: Assets/Scenes/EditEvent.unity
+    guid: 687232c85093be1419f4661fb751fb41
+  - enabled: 1
+    path: Assets/Scenes/EventsAdmin.unity
+    guid: fd5de76d11112624996b3b373bb9d422
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
