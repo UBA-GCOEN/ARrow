@@ -1285,7 +1285,11 @@ GameObject:
   - component: {fileID: 777857472}
   - component: {fileID: 777857473}
   m_Layer: 5
+<<<<<<< HEAD
+  m_Name: 4thyear
+=======
   m_Name: Fourth Year
+>>>>>>> b4a9549a27897d714b29ec849db04eba3daab3d8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1372,7 +1376,11 @@ GameObject:
   - component: {fileID: 815491785}
   - component: {fileID: 815491786}
   m_Layer: 5
+<<<<<<< HEAD
+  m_Name: 1styear
+=======
   m_Name: First Year
+>>>>>>> b4a9549a27897d714b29ec849db04eba3daab3d8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2438,7 +2446,11 @@ GameObject:
   - component: {fileID: 1288081827}
   - component: {fileID: 1288081828}
   m_Layer: 5
+<<<<<<< HEAD
+  m_Name: 3rdyear
+=======
   m_Name: Third Year
+>>>>>>> b4a9549a27897d714b29ec849db04eba3daab3d8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2525,7 +2537,11 @@ GameObject:
   - component: {fileID: 1293747012}
   - component: {fileID: 1293747013}
   m_Layer: 5
+<<<<<<< HEAD
+  m_Name: 2ndyear
+=======
   m_Name: Second Year
+>>>>>>> b4a9549a27897d714b29ec849db04eba3daab3d8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
