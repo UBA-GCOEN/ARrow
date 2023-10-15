@@ -40,22 +40,30 @@ public class LoadingScript : MonoBehaviour
         string token = PlayerPrefs.GetString("Token");
         UserData user = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString("UserData"));
 
-        if (token != "" && user != null)
+        string aboutApp = PlayerPrefs.GetString("AboutApp");
+        if (aboutApp == "true")
         {
-            if (user.isOnboarded)
+            if (token != "" && user != null)
             {
-                SceneManager.LoadScene("Home");
+                if (user.isOnboarded)
+                {
+                    SceneManager.LoadScene("Home");
+                }
+                else
+                {
+                    SceneManager.LoadScene("[Ob]Start");
+                }
             }
+
             else
             {
-                SceneManager.LoadScene("[Ob]Start");
+                // PlayerPrefs.DeleteKey("Token");
+                SceneManager.LoadScene("Startup(login)");
             }
         }
-
         else
         {
-            PlayerPrefs.DeleteKey("Token");
-            SceneManager.LoadScene("Startup(login)");
+            SceneManager.LoadScene("1-Routing");
         }
     }
 }
