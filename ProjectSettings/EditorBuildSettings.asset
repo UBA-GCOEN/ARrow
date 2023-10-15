@@ -53,6 +53,30 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Admin.unity
     guid: a668140102895f149b6270ffd613e3f8
+  - enabled: 1
+    path: Assets/Scenes/EventsAdmin.unity
+    guid: fd5de76d11112624996b3b373bb9d422
+  - enabled: 1
+    path: Assets/Scenes/EditEvent.unity
+    guid: d21055b6524692043a5bbcfe148d3169
+  - enabled: 1
+    path: Assets/Scenes/SendNotif.unity
+    guid: 687232c85093be1419f4661fb751fb41
+  - enabled: 1
+    path: Assets/Scenes/Notification.unity
+    guid: 9bc268513656df54f86f8e21fb866f88
+  - enabled: 1
+    path: Assets/Scenes/Carousel/1-Routing.unity
+    guid: 59b978e6cf8fdb044a9b66aac0339f77
+  - enabled: 1
+    path: Assets/Scenes/Carousel/2-Tour.unity
+    guid: c30f8a9a89aa83f42bf46e07893b1010
+  - enabled: 1
+    path: Assets/Scenes/Carousel/3-Events.unity
+    guid: ca1cfbdc76365c349acdf11af2023015
+  - enabled: 1
+    path: Assets/Scenes/Carousel/4-Memories.unity
+    guid: f04601edf16b3564798c496db45cc196
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}
