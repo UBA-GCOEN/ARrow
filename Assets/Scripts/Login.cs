@@ -69,7 +69,10 @@ public class Login : MonoBehaviour
 
                 PlayerPrefs.SetString("Token", response.token);
                 
+<<<<<<< HEAD
+=======
                 Debug.Log(response.result);
+>>>>>>> b4a9549a27897d714b29ec849db04eba3daab3d8
                 PlayerPrefs.SetString("UserData", JsonUtility.ToJson(response.result));  
 
                 UserData user = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString("UserData"));
