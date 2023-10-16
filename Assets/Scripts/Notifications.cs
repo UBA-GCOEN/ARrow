@@ -20,9 +20,16 @@ public class Notifications : MonoBehaviour
     public GameObject faculty;
     public GameObject eventButtonPrefab;
     public Transform sliderContent;
-
+    public Button AdminPanel;
     void Start()
     {
+        UserData user = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString("UserData"));
+     
+        if(user.role == "Admin"){
+            AdminPanel.gameObject.SetActive(true);
+        } 
+
+        
         loader.SetActive(true);
         StartCoroutine(GetNotification());
     }
@@ -37,7 +44,7 @@ public class Notifications : MonoBehaviour
     {
         string ApiEndpoint = "https://arrowserver.vercel.app/notification/get";
 
-        string token = PlayerPrefs.GetString("Token");  
+        string token = PlayerPrefs.GetString("Token");
         UnityWebRequest request = UnityWebRequest.Get(ApiEndpoint);
         request.SetRequestHeader("Authorization", "Bearer " + token);
         var handler = request.SendWebRequest();
@@ -61,7 +68,7 @@ public class Notifications : MonoBehaviour
 
             List<NotificationsData> events = JsonConvert.DeserializeObject<List<NotificationsData>>(request.downloadHandler.text);
 
-            // Debug.Log(request.downloadHandler.text);
+            Debug.Log(request.downloadHandler.text);
 
             foreach (NotificationsData notiData in events)
             {
@@ -83,17 +90,16 @@ public class Notifications : MonoBehaviour
     {
         // Instantiate a button prefab
         GameObject eventButton = Instantiate(eventButtonPrefab, sliderContent);
-        eventButton.transform.SetParent(sliderContent.transform); 
+        eventButton.transform.SetParent(sliderContent.transform);
 
-        
 
-        TextMeshProUGUI NotificationTitle = eventButton.GetComponentInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI NotificationTitle = eventButton.transform.Find("NT").GetComponent<TextMeshProUGUI>();
         NotificationTitle.text = eventData.title;
 
-        TextMeshProUGUI NotificationDescription = NotificationTitle.GetComponentInChildren<TextMeshProUGUI>();
-        NotificationDescription.text = eventData.message;
+        TextMeshProUGUI notificationDescription = eventButton.transform.Find("ND").GetComponent<TextMeshProUGUI>();
+        notificationDescription.text = eventData.message;
 
-        
+
 
         // Button buttonComponent = eventButton.GetComponent<Button>();
         // buttonComponent.onClick.AddListener(() => HandleEventButtonClick(eventData));
@@ -119,19 +125,19 @@ public class Notifications : MonoBehaviour
 
         if (everyone.activeInHierarchy)
         {
-            roles = new string[] { "Admin", "Student", "Staff", "Faculty"};
+            roles = new string[] { "Admin", "Student", "Staff", "Faculty" };
         }
         else if (student.activeInHierarchy)
         {
-            roles = new string[]{ "Student"};
+            roles = new string[] { "Student" };
         }
         else if (staff.activeInHierarchy)
         {
-            roles = new string[]{ "Staff"};
+            roles = new string[] { "Staff" };
         }
         else if (faculty.activeInHierarchy)
         {
-            roles = new string[]{ "Faculty"};
+            roles = new string[] { "Faculty" };
         }
 
         string json = JsonConvert.SerializeObject(roles);
@@ -165,15 +171,7 @@ public class Notifications : MonoBehaviour
 
             Debug.Log(request.downloadHandler.text);
 
-            // if (response.success)
-            // {
-
-            // }
-            // else
-            // {
-            //     // serverMsg.text = response.msg;
-            //     Debug.LogError(response.msg);
-            // }
+            SceneManager.LoadScene("Notifications");
 
         }
         else
