@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402188, g: 0.4931649, b: 0.57223135, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -207,10 +207,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1321471009}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: SceneName
-        m_Mode: 5
+      - m_Target: {fileID: 682464001}
+        m_TargetAssemblyTypeName: Corousel, Assembly-CSharp
+        m_MethodName: onSkipButtonClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -328,7 +328,7 @@ PrefabInstance:
     - target: {fileID: 5024014514723834666, guid: 56587bd4d8d18c44381ecf210239b95d,
         type: 3}
       propertyPath: backScene
-      value: Home
+      value: 2-Tour
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -839,6 +839,7 @@ GameObject:
   - component: {fileID: 682464000}
   - component: {fileID: 682463999}
   - component: {fileID: 682463998}
+  - component: {fileID: 682464001}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -920,6 +921,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &682464001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682463997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78157d1a1c5c23e4095e429e96d742ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &990750215
 GameObject:
   m_ObjectHideFlags: 0

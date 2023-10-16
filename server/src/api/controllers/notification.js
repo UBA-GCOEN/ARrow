@@ -24,8 +24,10 @@ export const sendNotification = async (req, res) => {
         res.send("invalid message")
         return 
     }
+    
+    const Role = JSON.parse(req.body.receiverRole);
 
-    if( !Array.isArray(receiverRole)){
+    if( !Array.isArray(Role)){
         res.send("invalid receiverRole")
         return 
     }
@@ -52,12 +54,16 @@ export const sendNotification = async (req, res) => {
         senderEmail: email,
         senderName: oldUser.name,
         senderRole: oldUser.role,
-        receiverRole,
+        receiverRole: Role,
         receiverBranch,
         receiverYear
     })
+    
+
+    
 
     if(result){
+        console.log("notification sent succesffully")
         res.status(200).json({
             msg: "notification sent succesffully",
             id: result.id
@@ -77,20 +83,21 @@ export const sendNotification = async (req, res) => {
 export const getNotification = async (req, res) => {
 
     const email = req.email
+    
+    // console.log("Check", email)
 
     const oldUser = await userModel.findOne({email})
 
     const role = oldUser.role
 
     const notifications = await notificationModel.find({
-        receiverRoles: { $in: [role] }
+        receiverRole: { $in: [role] }
     })
 
+    
+
     if(notifications){
-        res.json({
-            msg: "notification received successfully",
-            notifn: notifications
-        })
+        res.json(notifications)
     }
 }
 
