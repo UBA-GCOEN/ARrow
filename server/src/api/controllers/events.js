@@ -57,9 +57,6 @@ export const createEvent = async (req, res) => {
         return
     }
 
-
-
-
     //detrmine current logged in role 
     const olduser = await userModel.findOne({email})
     const role = olduser.role
@@ -67,11 +64,13 @@ export const createEvent = async (req, res) => {
     
     // Event creation in database
      
-    if(role == 'admin' || role == 'faculty'){
+    if(role == 'Admin' || role == 'Faculty'){
 
        let organizerRole = role
-       let organizerEmail = req.session.user.user.email
-       let organizerName = req.session.user.user.name
+       let organizerEmail = olduser.email
+       let organizerName = olduser.name
+
+       console.log(organizerRole, organizerEmail, organizerName);
 
         try{
             const result = await eventModel.create({
