@@ -163,19 +163,10 @@ public class getEvents : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             loader.SetActive(false);
-            // SigninResponse response = JsonUtility.FromJson<SigninResponse>(request.downloadHandler.text);
-
             Debug.Log(request.downloadHandler.text);
 
-            // if (response.success)
-            // {
-
-            // }
-            // else
-            // {
-            //     // serverMsg.text = response.msg;
-            //     Debug.LogError(response.msg);
-            // }
+            SceneManager.LoadScene("EventsAdmin");
+            
 
         }
         else

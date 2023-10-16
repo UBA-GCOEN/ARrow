@@ -5889,6 +5889,17 @@ MonoBehaviour:
   time: {fileID: 164025260}
   venue: {fileID: 151634991}
   guest: {fileID: 364174369}
+  eventButtonPrefab: {fileID: 0}
+  sliderContent: {fileID: 0}
+  Panel: {fileID: 0}
+  EventTitle: {fileID: 0}
+  OrganiserName: {fileID: 0}
+  OrganiserEmail: {fileID: 0}
+  EventDescription: {fileID: 0}
+  CheifGuestName: {fileID: 0}
+  EventCoordinator: {fileID: 0}
+  EventTime: {fileID: 0}
+  EventVenue: {fileID: 0}
 --- !u!1 &1794739716
 GameObject:
   m_ObjectHideFlags: 0
@@ -6173,7 +6184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1911746164
 RectTransform:
   m_ObjectHideFlags: 0

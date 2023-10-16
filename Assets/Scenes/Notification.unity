@@ -787,7 +787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1643639278
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1116,6 +1116,7 @@ MonoBehaviour:
   eventButtonPrefab: {fileID: 7373080567188025504, guid: b1a9c3361f0f9af42928da9819e3b39d,
     type: 3}
   sliderContent: {fileID: 1794739717}
+  AdminPanel: {fileID: 1643639279}
 --- !u!1 &1794739716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,8 +1153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 18.74, y: -1047}
-  m_SizeDelta: {x: 836.823, y: 856.0627}
+  m_AnchoredPosition: {x: 18.74, y: -1122.7352}
+  m_SizeDelta: {x: 836.823, y: 1007.5331}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1794739718
 MonoBehaviour:
@@ -1211,14 +1212,14 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 10
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 40
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
+  m_ReverseArrangement: 1
 --- !u!1 &1870030487
 GameObject:
   m_ObjectHideFlags: 0
