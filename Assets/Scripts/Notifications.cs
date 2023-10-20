@@ -171,7 +171,7 @@ public class Notifications : MonoBehaviour
 
             Debug.Log(request.downloadHandler.text);
 
-            SceneManager.LoadScene("Notifications");
+            SceneManager.LoadScene("Notification");
 
         }
         else
